@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="MarkBind 2.3.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link rel="stylesheet" href="markbind/css/bootstrap.min.css">
+  <link rel="stylesheet" href="markbind/css/bootstrap-vue.min.css">
+  <link rel="stylesheet" href="markbind/fontawesome/css/all.min.css">
+  <link rel="stylesheet" href="markbind/glyphicons/css/bootstrap-glyphicons.min.css">
+  <link rel="stylesheet" href="markbind/css/github.min.css">
+  <link rel="stylesheet" href="markbind/css/markbind.css">
+  <link rel="stylesheet" href="markbind/layouts/default/styles.css">
+  <link rel="stylesheet" href="markbind/css/site-nav.css">
+
+
+
+</head>
+
+<body>
+  <div id="app">
+    <header>
+      <navbar placement="top" type="inverse">
+        <a slot="brand" href="/teammates/index.html" title="Home" class="navbar-brand"><i class="far fa-file-image"></i></a>
+        <li><a href="/teammates/index.html" class="nav-link">HOME</a></li>
+        <li><a href="/teammates/about.html" class="nav-link">ABOUT</a></li>
+        <li slot="right">
+          <form class="navbar-form">
+            <searchbar :data="searchData" placeholder="Search" :on-hit="searchCallback" menu-align-right></searchbar>
+          </form>
+        </li>
+      </navbar>
+    </header>
+    <div id="flex-body">
+      <nav id="site-nav" class="navbar navbar-light bg-transparent">
+        <div class="position-sticky position-top site-nav-spacer viewport-height-90 scrollable slim-scroll">
+          <ul class="px-0 site-nav-list">
+            <li class="mt-2"><a href="/teammates/index.html" class="site-nav__a">Index</a></li>
+            <li class="mt-2"><a href="/teammates/CONTRIBUTING.html" class="site-nav__a">CONTRIBUTING</a></li>
+            <li class="mt-2"><a href="/teammates/README.html" class="site-nav__a">README</a></li>
+            <li class="mt-2"><a href="/teammates/best-practices/coding.html" class="site-nav__a">Coding</a></li>
+            <li class="mt-2"><a href="/teammates/best-practices/data-migration.html" class="site-nav__a">Data Migration</a></li>
+            <li class="mt-2"><a href="/teammates/best-practices/testing.html" class="site-nav__a">Testing</a></li>
+            <li class="mt-2"><a href="/teammates/best-practices/ui-design.html" class="site-nav__a">Ui Design</a></li>
+            <li class="mt-2"><a href="/teammates/captcha.html" class="site-nav__a">Captcha</a></li>
+            <li class="mt-2"><a href="/teammates/design.html" class="site-nav__a">Design</a></li>
+            <li class="mt-2"><a href="/teammates/development.html" class="site-nav__a">Development</a></li>
+            <li class="mt-2"><a href="/teammates/emails.html" class="site-nav__a">Emails</a></li>
+            <li class="mt-2"><a href="/teammates/glossary.html" class="site-nav__a current">Glossary</a></li>
+            <li class="mt-2"><a href="/teammates/ide-setup.html" class="site-nav__a">Ide Setup</a></li>
+            <li class="mt-2"><a href="/teammates/issues.html" class="site-nav__a">Issues</a></li>
+            <li class="mt-2"><a href="/teammates/overview.html" class="site-nav__a">Overview</a></li>
+            <li class="mt-2"><a href="/teammates/performance-testing.html" class="site-nav__a">Performance Testing</a></li>
+            <li class="mt-2"><a href="/teammates/process.html" class="site-nav__a">Process</a></li>
+            <li class="mt-2"><a href="/teammates/setting-up.html" class="site-nav__a">Setting Up</a></li>
+            <li class="mt-2"><a href="/teammates/snapshot-testing.html" class="site-nav__a">Snapshot Testing</a></li>
+            <li class="mt-2"><a href="/teammates/static-analysis.html" class="site-nav__a">Static Analysis</a></li>
+            <li class="mt-2"><a href="/teammates/troubleshooting-guide.html" class="site-nav__a">Troubleshooting Guide</a></li>
+          </ul>
+        </div>
+      </nav>
+      <div id="content-wrapper">
+        <h1 id="glossary">Glossary<a class="fa fa-anchor" href="#glossary"></a></h1>
+        <p>This document lines out the common terms used in the project.</p>
+        <h2 id="product-related">Product-related<a class="fa fa-anchor" href="#product-related"></a></h2>
+        <ul>
+          <li><strong>Course</strong>: We use &quot;course&quot; to mean &quot;module&quot;, &quot;class&quot;. A course here means an offering of a course in a particular semester/term. If the course is offered twice in two semesters (i.e. with different students and teaching team), they are considered two courses. There is, however, no time limit on how long a course may run.</li>
+          <li><strong>Contribution scale</strong>:</li>
+        </ul>
+        <pre><code class="hljs">    [equal share]+100%
+
+    [equal share]+90%
+
+    ...
+
+    [equal share]
+
+    [NOT SURE]
+
+    [equal share]-10%
+
+     ...
+
+    [equal share]-90%
+
+    [0%] (did nothing at all)
+</code></pre>
+        <ul>
+          <li><strong>Enrollment, Enroll</strong> (NOT enrolment, enrol).</li>
+          <li><strong>Feedback Session</strong>: A collection of questions for students and/or instructors alike to answer; synonymous to a questionnaire, a survey.<br>
+            Sometimes, this is referred to as simply &quot;Session&quot;; developers must take extra care so as not to confuse it with HTTP sessions.</li>
+        </ul>
+        <h2 id="development-related">Development-related<a class="fa fa-anchor" href="#development-related"></a></h2>
+        <ul>
+          <li><a href="https://github.com/TEAMMATES/teammates"><strong>Main repo</strong></a>: The repository containing the latest stable code.</li>
+          <li><a href="https://github.com/TEAMMATES/teammates-ops"><strong>Ops repo</strong></a>: The repository containing maintenance and operations-specific information.</li>
+          <li><strong>Specs</strong>: System Specification.</li>
+        </ul>
+        <p><code>* server</code>:</p>
+        <ul>
+          <li><strong>Dev server</strong>: The development server running on your computer.</li>
+          <li><strong>CI server</strong>: Continuous Integration server used for building/testing patches. Can be Travis or AppVeyor.</li>
+          <li><strong>Production server</strong>: A server on Google App Engine. Can be a staging server or the live server.</li>
+          <li><strong>Staging server</strong>: The server instance you created on Google App Engine for testing purpose.</li>
+          <li><strong>Live server</strong>: The server running the released public version of the app (i.e. <a href="http://teammatesv4.appspot.com">http://teammatesv4.appspot.com</a>).</li>
+        </ul>
+        <p><code>* tests</code>:</p>
+        <ul>
+          <li><strong>All tests</strong>: The full test suite.</li>
+          <li><strong>Component tests</strong>: Unit and integration tests, i.e. white-box tests. There are separate component test suites for front-end and back-end.</li>
+          <li><strong>E2E tests</strong>: End-to-end system tests, i.e. black-box tests. Also used for product acceptance.</li>
+          <li><strong>CI tests</strong>: Tests to be run on the CI server. Consists of components tests and E2E tests.</li>
+        </ul>
+        <p><code>* green</code>:</p>
+        <ul>
+          <li><strong>Dev green</strong>: <strong>All</strong> tests are passing on the dev server.</li>
+          <li><strong>CI green</strong>: <strong>CI</strong> tests are passing on the CI server.</li>
+          <li><strong>Staging green</strong>: <strong>All</strong> tests are passing against your own staging server.</li>
+          <li><strong>Live green</strong>: <strong>All</strong> tests are passing against the app running on the live server.</li>
+        </ul>
+      </div>
+    </div>
+    <footer>
+      <div class="text-center">
+        This is a dynamic height footer that supports markdown <span>😄</span>!
+      </div>
+
+      <div class="text-center">
+        <small>[Generated by <a href="https://markbind.org/">MarkBind 2.3.0</a> on Tue, 23 Apr 2019 07:31:51 GMT]</small></div>
+    </footer>
+  </div>
+</body>
+<script src="markbind/js/vue.min.js"></script>
+<script src="markbind/js/vue-strap.min.js"></script>
+<script src="markbind/js/bootstrap-utility.min.js"></script>
+<script src="markbind/js/polyfill.min.js"></script>
+<script src="markbind/js/bootstrap-vue.min.js"></script>
+<script>
+  const baseUrl = '/teammates'
+  const enableSearch = true
+</script>
+<script src="markbind/js/setup.js"></script>
+<script src="markbind/layouts/default/scripts.js"></script>
+
+</html>

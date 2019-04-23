@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="MarkBind 2.3.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link rel="stylesheet" href="markbind/css/bootstrap.min.css">
+  <link rel="stylesheet" href="markbind/css/bootstrap-vue.min.css">
+  <link rel="stylesheet" href="markbind/fontawesome/css/all.min.css">
+  <link rel="stylesheet" href="markbind/glyphicons/css/bootstrap-glyphicons.min.css">
+  <link rel="stylesheet" href="markbind/css/github.min.css">
+  <link rel="stylesheet" href="markbind/css/markbind.css">
+  <link rel="stylesheet" href="markbind/layouts/default/styles.css">
+  <link rel="stylesheet" href="markbind/css/site-nav.css">
+
+
+
+</head>
+
+<body>
+  <div id="app">
+    <header>
+      <navbar placement="top" type="inverse">
+        <a slot="brand" href="/teammates/index.html" title="Home" class="navbar-brand"><i class="far fa-file-image"></i></a>
+        <li><a href="/teammates/index.html" class="nav-link">HOME</a></li>
+        <li><a href="/teammates/about.html" class="nav-link">ABOUT</a></li>
+        <li slot="right">
+          <form class="navbar-form">
+            <searchbar :data="searchData" placeholder="Search" :on-hit="searchCallback" menu-align-right></searchbar>
+          </form>
+        </li>
+      </navbar>
+    </header>
+    <div id="flex-body">
+      <nav id="site-nav" class="navbar navbar-light bg-transparent">
+        <div class="position-sticky position-top site-nav-spacer viewport-height-90 scrollable slim-scroll">
+          <ul class="px-0 site-nav-list">
+            <li class="mt-2"><a href="/teammates/index.html" class="site-nav__a">Index</a></li>
+            <li class="mt-2"><a href="/teammates/CONTRIBUTING.html" class="site-nav__a">CONTRIBUTING</a></li>
+            <li class="mt-2"><a href="/teammates/README.html" class="site-nav__a">README</a></li>
+            <li class="mt-2"><a href="/teammates/best-practices/coding.html" class="site-nav__a">Coding</a></li>
+            <li class="mt-2"><a href="/teammates/best-practices/data-migration.html" class="site-nav__a">Data Migration</a></li>
+            <li class="mt-2"><a href="/teammates/best-practices/testing.html" class="site-nav__a">Testing</a></li>
+            <li class="mt-2"><a href="/teammates/best-practices/ui-design.html" class="site-nav__a">Ui Design</a></li>
+            <li class="mt-2"><a href="/teammates/captcha.html" class="site-nav__a">Captcha</a></li>
+            <li class="mt-2"><a href="/teammates/design.html" class="site-nav__a">Design</a></li>
+            <li class="mt-2"><a href="/teammates/development.html" class="site-nav__a">Development</a></li>
+            <li class="mt-2"><a href="/teammates/emails.html" class="site-nav__a">Emails</a></li>
+            <li class="mt-2"><a href="/teammates/glossary.html" class="site-nav__a">Glossary</a></li>
+            <li class="mt-2"><a href="/teammates/ide-setup.html" class="site-nav__a">Ide Setup</a></li>
+            <li class="mt-2"><a href="/teammates/issues.html" class="site-nav__a">Issues</a></li>
+            <li class="mt-2"><a href="/teammates/overview.html" class="site-nav__a">Overview</a></li>
+            <li class="mt-2"><a href="/teammates/performance-testing.html" class="site-nav__a current">Performance Testing</a></li>
+            <li class="mt-2"><a href="/teammates/process.html" class="site-nav__a">Process</a></li>
+            <li class="mt-2"><a href="/teammates/setting-up.html" class="site-nav__a">Setting Up</a></li>
+            <li class="mt-2"><a href="/teammates/snapshot-testing.html" class="site-nav__a">Snapshot Testing</a></li>
+            <li class="mt-2"><a href="/teammates/static-analysis.html" class="site-nav__a">Static Analysis</a></li>
+            <li class="mt-2"><a href="/teammates/troubleshooting-guide.html" class="site-nav__a">Troubleshooting Guide</a></li>
+          </ul>
+        </div>
+      </nav>
+      <div id="content-wrapper">
+        <h1 id="performance-testing">Performance Testing<a class="fa fa-anchor" href="#performance-testing"></a></h1>
+        <p>TEAMMATES makes use of <a href="https://jmeter.apache.org/">JMeter</a> for load and performance (L&amp;P) testing, and uses the <a href="https://jmeter.apache.org/api/index.html">JMeter Java API</a> and TestNG to automate the process of running performance tests.
+          The performance test cases are located in the <code>teammates.e2e.cases.lnp</code> package.</p>
+        <h2 id="creating-performance-tests">Creating Performance Tests<a class="fa fa-anchor" href="#creating-performance-tests"></a></h2>
+        <p>Each new test case must inherit the base L&amp;P test class, and implement the methods required for generating the test data and the JMeter L&amp;P test plan.
+          The L&amp;P test plans are created in Java using the JMeter API.</p>
+        <p>When running the L&amp;P test, an equivalent <code>.jmx</code> file can be generated from this test plan.
+          To help with debugging, you can open this <code>.jmx</code> file in the JMeter GUI and add Listeners.</p>
+        <p>To see a sample implementation of a test case, you can refer to <code>StudentProfileLNPTest</code>. It is a <em>simple</em> test case which load tests a GET endpoint (<code>/webapi/student/profile</code>).</p>
+        <h2 id="running-performance-tests">Running Performance Tests<a class="fa fa-anchor" href="#running-performance-tests"></a></h2>
+        <p>If you want to use your own copy of <a href="https://jmeter.apache.org/download_jmeter.cgi">JMeter</a>, update the <code>test.jmeter.*</code> properties in <code>src/e2e/resources/test.properties</code> accordingly.<br>
+          Start the backend server, i.e. <code>localhost:8080</code>, before running the performance tests.</p>
+        <h3 id="using-gradle">Using Gradle<a class="fa fa-anchor" href="#using-gradle"></a></h3>
+        <p>To run the performance tests, execute this command from the main project directory:</p>
+        <pre><code class="hljs sh">./gradlew lnpTests
+</code></pre>
+        <ul>
+          <li>The JMeter test results are stored as JTL files with the same name as the test file in <code>src/e2e/lnp/results/TEST_NAME.jmx.jtl</code>.</li>
+          <li>A log file is generated as <code>jmeter.log</code>.</li>
+        </ul>
+        <p>If the build fails:</p>
+        <ul>
+          <li>Check the console log messages and the <code>jmeter.log</code> file to see if there were any errors or exceptions thrown. If so, take the necessary steps to fix them.</li>
+          <li>Check the generated <code>.jtl</code> result files to see whether the <code>success</code> value of any row is <code>false</code>. If so, investigate the cause (possibly by making use of the JMeter GUI and Listeners) and fix it.</li>
+        </ul>
+        <h3 id="using-the-command-line">Using the Command Line<a class="fa fa-anchor" href="#using-the-command-line"></a></h3>
+        <p>If you have JMeter installed, you can use <code>jmeter</code> in the command line to run tests and generate reports.</p>
+        <p>Execute this command after replacing the parameters with the relevant paths:</p>
+        <pre><code class="hljs sh">jmeter -n -t PATH_TO_TEST_FILE.jmx -l PATH_TO_RESULT_FILE.jtl -j PATH_TO_LOG_FILE.log
+</code></pre>
+        <p>Also, you can use this command to generate a HTML <strong>summary report</strong> from the results file (<code>.jtl</code>) that was generated earlier:</p>
+        <pre><code class="hljs sh">jmeter -g PATH_TO_RESULT_FILE.jtl -o REPORT_OUTPUT_FOLDER -j PATH_TO_LOG_FILE.log
+</code></pre>
+        <p>If you want to do both together (i.e. execute the test and generate the report), use:</p>
+        <pre><code class="hljs sh">jmeter -n -t PATH_TO_TEST_FILE.jmx -l PATH_TO_RESULT_FILE.jtl -e -o REPORT_OUTPUT_FOLDER -j PATH_TO_LOG_FILE.log
+</code></pre>
+        <h3 id="using-jmeter-gui">Using JMeter GUI<a class="fa fa-anchor" href="#using-jmeter-gui"></a></h3>
+        <p>You can also install JMeter and use its GUI to run performance tests. This is particularly useful when debugging or validating that the test works as expected.
+          However, you should not use the GUI to run large scale tests as it is very resource intensive.</p>
+        <blockquote>
+          <p>Remember to <strong>disable or remove all <code>Listeners</code></strong> in the <code>.jmx</code> file, unless you are debugging. Having them enabled can have a negative impact on the test performance.</p>
+        </blockquote>
+      </div>
+    </div>
+    <footer>
+      <div class="text-center">
+        This is a dynamic height footer that supports markdown <span>😄</span>!
+      </div>
+
+      <div class="text-center">
+        <small>[Generated by <a href="https://markbind.org/">MarkBind 2.3.0</a> on Tue, 23 Apr 2019 07:31:51 GMT]</small></div>
+    </footer>
+  </div>
+</body>
+<script src="markbind/js/vue.min.js"></script>
+<script src="markbind/js/vue-strap.min.js"></script>
+<script src="markbind/js/bootstrap-utility.min.js"></script>
+<script src="markbind/js/polyfill.min.js"></script>
+<script src="markbind/js/bootstrap-vue.min.js"></script>
+<script>
+  const baseUrl = '/teammates'
+  const enableSearch = true
+</script>
+<script src="markbind/js/setup.js"></script>
+<script src="markbind/layouts/default/scripts.js"></script>
+
+</html>

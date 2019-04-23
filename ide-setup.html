@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="MarkBind 2.3.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link rel="stylesheet" href="markbind/css/bootstrap.min.css">
+  <link rel="stylesheet" href="markbind/css/bootstrap-vue.min.css">
+  <link rel="stylesheet" href="markbind/fontawesome/css/all.min.css">
+  <link rel="stylesheet" href="markbind/glyphicons/css/bootstrap-glyphicons.min.css">
+  <link rel="stylesheet" href="markbind/css/github.min.css">
+  <link rel="stylesheet" href="markbind/css/markbind.css">
+  <link rel="stylesheet" href="markbind/layouts/default/styles.css">
+  <link rel="stylesheet" href="markbind/css/site-nav.css">
+
+
+
+</head>
+
+<body>
+  <div id="app">
+    <header>
+      <navbar placement="top" type="inverse">
+        <a slot="brand" href="/teammates/index.html" title="Home" class="navbar-brand"><i class="far fa-file-image"></i></a>
+        <li><a href="/teammates/index.html" class="nav-link">HOME</a></li>
+        <li><a href="/teammates/about.html" class="nav-link">ABOUT</a></li>
+        <li slot="right">
+          <form class="navbar-form">
+            <searchbar :data="searchData" placeholder="Search" :on-hit="searchCallback" menu-align-right></searchbar>
+          </form>
+        </li>
+      </navbar>
+    </header>
+    <div id="flex-body">
+      <nav id="site-nav" class="navbar navbar-light bg-transparent">
+        <div class="position-sticky position-top site-nav-spacer viewport-height-90 scrollable slim-scroll">
+          <ul class="px-0 site-nav-list">
+            <li class="mt-2"><a href="/teammates/index.html" class="site-nav__a">Index</a></li>
+            <li class="mt-2"><a href="/teammates/CONTRIBUTING.html" class="site-nav__a">CONTRIBUTING</a></li>
+            <li class="mt-2"><a href="/teammates/README.html" class="site-nav__a">README</a></li>
+            <li class="mt-2"><a href="/teammates/best-practices/coding.html" class="site-nav__a">Coding</a></li>
+            <li class="mt-2"><a href="/teammates/best-practices/data-migration.html" class="site-nav__a">Data Migration</a></li>
+            <li class="mt-2"><a href="/teammates/best-practices/testing.html" class="site-nav__a">Testing</a></li>
+            <li class="mt-2"><a href="/teammates/best-practices/ui-design.html" class="site-nav__a">Ui Design</a></li>
+            <li class="mt-2"><a href="/teammates/captcha.html" class="site-nav__a">Captcha</a></li>
+            <li class="mt-2"><a href="/teammates/design.html" class="site-nav__a">Design</a></li>
+            <li class="mt-2"><a href="/teammates/development.html" class="site-nav__a">Development</a></li>
+            <li class="mt-2"><a href="/teammates/emails.html" class="site-nav__a">Emails</a></li>
+            <li class="mt-2"><a href="/teammates/glossary.html" class="site-nav__a">Glossary</a></li>
+            <li class="mt-2"><a href="/teammates/ide-setup.html" class="site-nav__a current">Ide Setup</a></li>
+            <li class="mt-2"><a href="/teammates/issues.html" class="site-nav__a">Issues</a></li>
+            <li class="mt-2"><a href="/teammates/overview.html" class="site-nav__a">Overview</a></li>
+            <li class="mt-2"><a href="/teammates/performance-testing.html" class="site-nav__a">Performance Testing</a></li>
+            <li class="mt-2"><a href="/teammates/process.html" class="site-nav__a">Process</a></li>
+            <li class="mt-2"><a href="/teammates/setting-up.html" class="site-nav__a">Setting Up</a></li>
+            <li class="mt-2"><a href="/teammates/snapshot-testing.html" class="site-nav__a">Snapshot Testing</a></li>
+            <li class="mt-2"><a href="/teammates/static-analysis.html" class="site-nav__a">Static Analysis</a></li>
+            <li class="mt-2"><a href="/teammates/troubleshooting-guide.html" class="site-nav__a">Troubleshooting Guide</a></li>
+          </ul>
+        </div>
+      </nav>
+      <div id="content-wrapper">
+        <h1 id="set-up-an-ide">Set up an IDE<a class="fa fa-anchor" href="#set-up-an-ide"></a></h1>
+        <ul>
+          <li><a href="#eclipse-ide">Eclipse IDE</a></li>
+          <li><a href="#intellij-idea">IntelliJ IDEA</a></li>
+        </ul>
+        <h2 id="eclipse-ide">Eclipse IDE<a class="fa fa-anchor" href="#eclipse-ide"></a></h2>
+        <blockquote>
+          <ul>
+            <li>Replace all references of <code>Eclipse → Preferences → ...</code> to <code>Window → Preferences → ...</code> if you are using Windows or Linux.</li>
+            <li>If you worry that these settings will interfere with your other projects, you can use a separate Eclipse instance for TEAMMATES.</li>
+          </ul>
+        </blockquote>
+        <p>Supported Eclipse versions: <a href="http://www.eclipse.org/downloads/">Eclipse IDE for Java EE Developers version Neon, Oxygen, or Photon</a>.</p>
+        <h3 id="prerequisites">Prerequisites<a class="fa fa-anchor" href="#prerequisites"></a></h3>
+        <ol>
+          <li>
+            <p>You need the following plugins:</p>
+            <ul>
+              <li><a href="https://marketplace.eclipse.org/content/buildship-gradle-integration">Buildship Gradle Integration</a></li>
+              <li><a href="http://marketplace.eclipse.org/content/google-cloud-tools-eclipse">Google Cloud Tools for Eclipse</a></li>
+              <li><a href="https://marketplace.eclipse.org/content/testng-eclipse">TestNG for Eclipse</a></li>
+              <li>(Optional) <a href="https://marketplace.eclipse.org/content/angular-ide">Angular IDE</a>
+                <ul>
+                  <li>Alternatively, you can use <a href="https://www.genuitec.com/products/angular-ide/">the standalone version</a>.</li>
+                </ul>
+              </li>
+            </ul>
+            <p><a href="/teammates/images/eclipsesetupguide-1.png" target="_self"><img src="/teammates/images/eclipsesetupguide-1.png" alt class="img-fluid"></a></p>
+            <p><a href="/teammates/images/eclipsesetupguide-2.png" target="_self"><img src="/teammates/images/eclipsesetupguide-2.png" alt class="img-fluid"></a></p>
+            <p><a href="/teammates/images/eclipsesetupguide-3.png" target="_self"><img src="/teammates/images/eclipsesetupguide-3.png" alt class="img-fluid"></a></p>
+          </li>
+          <li>
+            <p>Before importing the project into Eclipse, do the following:</p>
+            <ul>
+              <li>
+                <p>Google Cloud Tools: Go to <code>Eclipse → Preferences → Google Cloud Tools</code> and fill the <code>SDK location</code> box with the directory of your installed Google Cloud SDK.</p>
+                <p><a href="/teammates/images/eclipsesetupguide-4.png" target="_self"><img src="/teammates/images/eclipsesetupguide-4.png" alt class="img-fluid"></a></p>
+              </li>
+              <li>
+                <p>JRE: Go to <code>Eclipse → Preferences → Java → Installed JRE</code> and ensure a <strong>JDK 1.8</strong> (not JRE) entry exists.</p>
+                <p><a href="/teammates/images/eclipsesetupguide-5.png" target="_self"><img src="/teammates/images/eclipsesetupguide-5.png" alt class="img-fluid"></a></p>
+                <p>Note that the JDK to be used is not required to be the <code>default</code>.</p>
+              </li>
+            </ul>
+          </li>
+        </ol>
+        <h3 id="project-setup">Project Setup<a class="fa fa-anchor" href="#project-setup"></a></h3>
+        <ol>
+          <li>
+            <p>Run this command to get the necessary configuration files for Eclipse:</p>
+            <pre><code class="hljs sh">./gradlew setupEclipse
+</code></pre>
+            <p><strong>Verification:</strong> The folder <code>.launches</code> and files <code>.classpath</code>, <code>.project</code> should be added to the project root directory.</p>
+          </li>
+          <li>
+            <p>Import the project into your Eclipse instance.</p>
+            <ul>
+              <li>Go to <code>File → Import...</code>.</li>
+              <li>Under <code>Gradle</code>, select <code>Existing Gradle Project</code>. Click <code>Next &gt;</code>.</li>
+              <li>Set the <code>Project root directory</code> to the location where the repository is cloned. Click <code>Next &gt;</code>.</li>
+              <li>If necessary, tick <code>Override workspace settings</code> and choose <code>Gradle wrapper</code>. Click <code>Finish</code>.</li>
+            </ul>
+            <p>After importing the project, you may see many errors/warnings on your marker tab.
+              These will be resolved in the next step.</p>
+          </li>
+          <li>
+            <p>Configure the following project-specific settings (all can be found in <code>Project → Properties → ...</code>, except for the HTML, CSS and XML settings which can be found in <code>Eclipse → Preferences → ...</code>):</p>
+            <ul>
+              <li>
+                <p>Text encoding: <code>UTF-8</code> is used for text encoding.
+                  Configure for all the languages used in TEAMMATES in <code>Eclipse → Preferences → ...</code>. Change the encoding to <code>UTF-8</code> if it is not the default value.</p>
+                <ul>
+                  <li>General: <code>General → Workspace → Text file encoding</code>.</li>
+                  <li>HTML: <code>Web → HTML Files → Encoding</code>. Alternatively, tick <code>Use workspace encoding</code>.</li>
+                  <li>CSS: <code>Web → CSS Files → Encoding</code>.</li>
+                  <li>XML: <code>XML → XML Files → Encoding</code>.</li>
+                </ul>
+              </li>
+              <li>
+                <p>JDK: <code>Java Build Path → Libraries</code> → ensure that the system library used is JDK 8.</p>
+                <p><a href="/teammates/images/eclipsesetupguide-6.png" target="_self"><img src="/teammates/images/eclipsesetupguide-6.png" alt class="img-fluid"></a></p>
+              </li>
+              <li>
+                <p>Compiler compliance: <code>Java Compiler</code> → tick <code>Use compliance from execution environment 'JavaSE-1.8' on the 'Java Build Path'</code>.</p>
+                <p><a href="/teammates/images/eclipsesetupguide-7.png" target="_self"><img src="/teammates/images/eclipsesetupguide-7.png" alt class="img-fluid"></a></p>
+              </li>
+              <li>
+                <p>Indentation: 2 spaces are used in place of tabs for indentations. For Java and XML, 4 spaces are used instead.
+                  Configure for all the languages used in TEAMMATES:</p>
+                <ul>
+                  <li>Java: <code>Java → Code Style → Formatter → Edit → Tab policy → Spaces only</code>.</li>
+                  <li>TypeScript: <code>TypeScript → Formatter → Indent size</code>.</li>
+                </ul>
+                <p>You can find the Web, XML, and JSON options in <code>Eclipse → Preferences → ...</code>.</p>
+                <ul>
+                  <li>HTML: <code>Web → HTML Files → Editor → Indent using spaces</code>.</li>
+                  <li>CSS: <code>Web → CSS Files → Editor → Indent using spaces</code>.</li>
+                  <li>XML: <code>XML → XML Files → Editor → Indent using spaces</code>.</li>
+                  <li>JSON: <code>JSON → JSON Files → Editor → Indent using spaces</code>.</li>
+                </ul>
+              </li>
+              <li>
+                <p>Validation: Go to <code>Validation → ...</code></p>
+                <ul>
+                  <li>Disable validation for HTML and XML: Uncheck the <code>Build</code> option for <code>HTML Syntax Validator</code>, <code>DTD Validator</code>, <code>XML Schema Validator</code>, and <code>XML Validator</code>.</li>
+                  <li>Disable validation for JavaScript and JSON files in <code>node_modules</code> folder: Click the <code>...</code> settings button for <code>JavaScript Validation</code> → if <code>Exclude Group</code> is not already in the list then click <code>Add Exclude Group...</code> → <code>Exclude Group</code> → <code>Add Rule...</code> → <code>Folder or file name</code> → <code>Next</code> → <code>Browse Folder...</code> → navigate to the <code>node_modules</code> folder and confirm → <code>Finish</code>. The steps for disabling the <code>JSON Validator</code>are similar.</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <p><code>Refresh</code> and <code>Clean</code> the project for all changes to take effect. Ensure that there are no errors. Warnings are generally fine and can be ignored.</p>
+            <p><a href="/teammates/images/eclipsesetupguide-8.png" target="_self"><img src="/teammates/images/eclipsesetupguide-8.png" alt class="img-fluid"></a></p>
+          </li>
+          <li>
+            <p>To set up some static analysis tools, refer to <a href="/teammates/static-analysis.md">this document</a>.</p>
+          </li>
+          <li>
+            <p>To move on to the development phase, refer to <a href="/teammates/development.md">this document</a></p>
+          </li>
+        </ol>
+        <blockquote>
+          <p>Note: It is not encouraged to run Gradle tasks via Eclipse.</p>
+        </blockquote>
+        <h2 id="intellij-idea">IntelliJ IDEA<a class="fa fa-anchor" href="#intellij-idea"></a></h2>
+        <blockquote>
+          <ul>
+            <li>Replace all references of <code>IntelliJ IDEA → Preferences</code> to <code>File → Settings</code> if you are using Windows or Linux.</li>
+          </ul>
+        </blockquote>
+        <p>Supported IntelliJ versions: IntelliJ IDEA Ultimate Edition (required to work with Google App Engine).
+          You can sign up for the free <a href="https://www.jetbrains.com/student/">JetBrains student license</a> if you are a student registered in an educational institution.</p>
+        <h3 id="prerequisites-2">Prerequisites<a class="fa fa-anchor" href="#prerequisites-2"></a></h3>
+        <ol>
+          <li>
+            <p>You need a Java 8 SDK with the name <code>1.8</code> defined in IntelliJ IDEA as follows:</p>
+            <ul>
+              <li>Click <code>Configure → Project Defaults → Project Structure</code> (or <code>File → Project Structure</code> if a project is open).
+                Select SDKs in Platform Settings and check if there is an SDK named <code>1.8</code> with a JDK home path pointing to a JDK 8 path.
+                Otherwise, add a new SDK using JDK 8 with a name of <code>1.8</code>.
+                <a href="/teammates/images/intellijsetupguide-1.png" target="_self"><img src="/teammates/images/intellijsetupguide-1.png" alt class="img-fluid"></a></li>
+            </ul>
+          </li>
+          <li>
+            <p>You need the <a href="https://cloud.google.com/tools/intellij/docs/quickstart-IDEA#install">Google Cloud Tools</a> plugin installed and configured:</p>
+            <p><a href="/teammates/images/intellijsetupguide-2.png" target="_self"><img src="/teammates/images/intellijsetupguide-2.png" alt class="img-fluid"></a></p>
+            <ul>
+              <li>During installation, you may encounter a prompt to disable the obsolete <code>Google App Engine Integration</code> plugin. Answer <code>Yes</code>.</li>
+              <li>After installation, restart IntelliJ IDEA and configure the plugin.
+                Click <code>Configure → Settings/Preferences</code> (or <code>IntelliJ IDEA → Preferences</code> if a project is open),
+                go to <code>Other Settings → Google → Cloud SDK</code>, and select your Google Cloud SDK directory.
+                <a href="/teammates/images/intellijsetupguide-3.png" target="_self"><img src="/teammates/images/intellijsetupguide-3.png" alt class="img-fluid"></a></li>
+            </ul>
+          </li>
+        </ol>
+        <h3 id="project-setup-2">Project Setup<a class="fa fa-anchor" href="#project-setup-2"></a></h3>
+        <ol>
+          <li>
+            <p>Import the project as a Gradle project as follows:</p>
+            <ol>
+              <li>Click <code>Import Project</code> (or <code>File → New → Project from Existing Sources...</code> if a project is open).</li>
+              <li>Select the local repository folder and click <code>Open</code>.</li>
+              <li>Select <code>Import project from external model</code> and then <code>Gradle</code>.</li>
+              <li>Click <code>Next</code>.</li>
+              <li>Check <code>Use auto-import</code> and uncheck <code>Create separate module per source set</code>.</li>
+              <li>Ensure <code>Create directories for empty content root automatically</code> is unchecked.</li>
+              <li>Ensure <code>Use default gradle wrapper</code> is selected.</li>
+              <li>Ensure for <code>Gradle JVM:</code> that a JDK 8 with a name of <code>1.8</code> is selected.</li>
+              <li>Click <code>Finish</code>. Wait for the indexing process to complete.</li>
+              <li>You should see a dialog box with the message:<br>
+                <code>Frameworks detected: Google App Engine Standard, Angular CLI frameworks are detected.</code>.<br>
+                <strong>OR</strong><br>
+                <code>Frameworks detected: Web, Google App Engine Standard, Angular CLI frameworks are detected</code>.<br>
+                Click on <code>Configure</code> and ensure that only <code>Google App Engine Standard</code> and <code>Angular CLI</code> frameworks are shown, then click <code>OK</code>.
+                If there are other frameworks shown, click <code>Cancel</code> and wait until indexing is completed, then try again.
+                <blockquote>
+                  <p>If you closed or missed the dialog box, go to <code>View → Tool Windows → Event Log</code>.
+                    You should see the same message as the message in the dialog box. Click <code>Configure</code> and then <code>OK</code>.</p>
+                </blockquote>
+              </li>
+            </ol>
+          </li>
+          <li>
+            <p>Configure the following project-specific settings (all can be found in <code>IntelliJ IDEA → Preferences → ...</code>):</p>
+            <ul>
+              <li>
+                <p>Indentation: 2 spaces are used in place of tabs for indentations. For Java and XML, 4 spaces are used instead.
+                  Configure for all the languages used in TEAMMATES:</p>
+                <ol>
+                  <li>Go to <code>Editor → Code Style</code>.</li>
+                  <li>Select <code>Project</code> for <code>Scheme</code> if you do not wish to make the settings the default for your IDE.</li>
+                  <li>For <code>TypeScript</code>, <code>JSON</code>, <code>CSS</code>, and <code>HTML</code>:
+                    <ul>
+                      <li>Ensure that <code>Use tab character</code> is unchecked, and <code>Tab size:</code>, <code>Indent:</code>, and <code>Continuation indent:</code> are <code>2</code>, <code>2</code>, and <code>4</code> respectively.</li>
+                    </ul>
+                  </li>
+                  <li>Repeat the previous step for <code>Java</code> and <code>XML</code> using the numbers <code>4</code>, <code>4</code>, and <code>8</code> respectively.</li>
+                </ol>
+              </li>
+              <li>
+                <p>Text encoding: <code>UTF-8</code> is used for text encoding.
+                  Go to <code>Editor → File Encodings</code> and ensure that <code>Project Encoding</code> and <code>Default Encoding for properties files</code> is set to <code>UTF-8</code>.</p>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <p>Click <code>OK</code>.</p>
+          </li>
+          <li>
+            <p>Run this command to set up the run configurations for IntelliJ:</p>
+            <pre><code class="hljs sh">./gradlew setupIntellij
+</code></pre>
+          </li>
+          <li>
+            <p>To set up some static analysis tools, refer to <a href="/teammates/static-analysis.md">this document</a>.</p>
+          </li>
+          <li>
+            <p>To move on to the development phase, refer to <a href="/teammates/development.md">this document</a>.</p>
+          </li>
+        </ol>
+      </div>
+    </div>
+    <footer>
+      <div class="text-center">
+        This is a dynamic height footer that supports markdown <span>😄</span>!
+      </div>
+
+      <div class="text-center">
+        <small>[Generated by <a href="https://markbind.org/">MarkBind 2.3.0</a> on Tue, 23 Apr 2019 07:31:51 GMT]</small></div>
+    </footer>
+  </div>
+</body>
+<script src="markbind/js/vue.min.js"></script>
+<script src="markbind/js/vue-strap.min.js"></script>
+<script src="markbind/js/bootstrap-utility.min.js"></script>
+<script src="markbind/js/polyfill.min.js"></script>
+<script src="markbind/js/bootstrap-vue.min.js"></script>
+<script>
+  const baseUrl = '/teammates'
+  const enableSearch = true
+</script>
+<script src="markbind/js/setup.js"></script>
+<script src="markbind/layouts/default/scripts.js"></script>
+
+</html>

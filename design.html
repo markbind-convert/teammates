@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="MarkBind 2.3.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link rel="stylesheet" href="markbind/css/bootstrap.min.css">
+  <link rel="stylesheet" href="markbind/css/bootstrap-vue.min.css">
+  <link rel="stylesheet" href="markbind/fontawesome/css/all.min.css">
+  <link rel="stylesheet" href="markbind/glyphicons/css/bootstrap-glyphicons.min.css">
+  <link rel="stylesheet" href="markbind/css/github.min.css">
+  <link rel="stylesheet" href="markbind/css/markbind.css">
+  <link rel="stylesheet" href="markbind/layouts/default/styles.css">
+  <link rel="stylesheet" href="markbind/css/site-nav.css">
+
+
+
+</head>
+
+<body>
+  <div id="app">
+    <header>
+      <navbar placement="top" type="inverse">
+        <a slot="brand" href="/teammates/index.html" title="Home" class="navbar-brand"><i class="far fa-file-image"></i></a>
+        <li><a href="/teammates/index.html" class="nav-link">HOME</a></li>
+        <li><a href="/teammates/about.html" class="nav-link">ABOUT</a></li>
+        <li slot="right">
+          <form class="navbar-form">
+            <searchbar :data="searchData" placeholder="Search" :on-hit="searchCallback" menu-align-right></searchbar>
+          </form>
+        </li>
+      </navbar>
+    </header>
+    <div id="flex-body">
+      <nav id="site-nav" class="navbar navbar-light bg-transparent">
+        <div class="position-sticky position-top site-nav-spacer viewport-height-90 scrollable slim-scroll">
+          <ul class="px-0 site-nav-list">
+            <li class="mt-2"><a href="/teammates/index.html" class="site-nav__a">Index</a></li>
+            <li class="mt-2"><a href="/teammates/CONTRIBUTING.html" class="site-nav__a">CONTRIBUTING</a></li>
+            <li class="mt-2"><a href="/teammates/README.html" class="site-nav__a">README</a></li>
+            <li class="mt-2"><a href="/teammates/best-practices/coding.html" class="site-nav__a">Coding</a></li>
+            <li class="mt-2"><a href="/teammates/best-practices/data-migration.html" class="site-nav__a">Data Migration</a></li>
+            <li class="mt-2"><a href="/teammates/best-practices/testing.html" class="site-nav__a">Testing</a></li>
+            <li class="mt-2"><a href="/teammates/best-practices/ui-design.html" class="site-nav__a">Ui Design</a></li>
+            <li class="mt-2"><a href="/teammates/captcha.html" class="site-nav__a">Captcha</a></li>
+            <li class="mt-2"><a href="/teammates/design.html" class="site-nav__a current">Design</a></li>
+            <li class="mt-2"><a href="/teammates/development.html" class="site-nav__a">Development</a></li>
+            <li class="mt-2"><a href="/teammates/emails.html" class="site-nav__a">Emails</a></li>
+            <li class="mt-2"><a href="/teammates/glossary.html" class="site-nav__a">Glossary</a></li>
+            <li class="mt-2"><a href="/teammates/ide-setup.html" class="site-nav__a">Ide Setup</a></li>
+            <li class="mt-2"><a href="/teammates/issues.html" class="site-nav__a">Issues</a></li>
+            <li class="mt-2"><a href="/teammates/overview.html" class="site-nav__a">Overview</a></li>
+            <li class="mt-2"><a href="/teammates/performance-testing.html" class="site-nav__a">Performance Testing</a></li>
+            <li class="mt-2"><a href="/teammates/process.html" class="site-nav__a">Process</a></li>
+            <li class="mt-2"><a href="/teammates/setting-up.html" class="site-nav__a">Setting Up</a></li>
+            <li class="mt-2"><a href="/teammates/snapshot-testing.html" class="site-nav__a">Snapshot Testing</a></li>
+            <li class="mt-2"><a href="/teammates/static-analysis.html" class="site-nav__a">Static Analysis</a></li>
+            <li class="mt-2"><a href="/teammates/troubleshooting-guide.html" class="site-nav__a">Troubleshooting Guide</a></li>
+          </ul>
+        </div>
+      </nav>
+      <div id="content-wrapper">
+        <h1 id="design">Design<a class="fa fa-anchor" href="#design"></a></h1>
+        <ul>
+          <li><a href="#architecture">Architecture</a></li>
+          <li><a href="#ui-component">UI Component</a></li>
+          <li><a href="#logic-component">Logic Component</a></li>
+          <li><a href="#storage-component">Storage Component</a></li>
+          <li><a href="#common-component">Common Component</a></li>
+          <li><a href="#test-driver-component">Test Driver Component</a></li>
+          <li><a href="#e2e-component">E2E Component</a></li>
+          <li><a href="#client-component">Client Component</a></li>
+        </ul>
+        <h2 id="architecture">Architecture<a class="fa fa-anchor" href="#architecture"></a></h2>
+        <p><a href="/teammates/images/highlevelArchitecture.png" target="_self"><img src="/teammates/images/highlevelArchitecture.png" alt class="img-fluid"></a></p>
+        <p>TEAMMATES is a Web application that runs on Google App Engine (GAE). Given above is an overview of the main components.</p>
+        <ul>
+          <li><strong>UI (Browser)</strong>: The UI seen by users consists of Web pages containing HTML, CSS (for styling) and JavaScript (for client-side interactions such as sorting, input validation, etc.). This UI is a single HTML page generated by Angular framework. The initial page request is sent to the server over HTTP, and requests for data are sent asynchronously with AJAX.</li>
+          <li><strong>UI (Server)</strong>: The entry point for the application back end logic is designed as a REST-ful controller.</li>
+          <li><strong>Logic</strong>: The main logic of the application is in POJOs (Plain Old Java Objects).</li>
+          <li><strong>Storage</strong>: The storage layer of the application uses the persistence framework provided by <strong>GAE Datastore</strong>, a NoSQL database.</li>
+          <li><strong>Test Driver</strong>: TEAMMATES makes heavy use of automated regression testing. Test data is transmitted using JSON format.
+            <ul>
+              <li><code>TestNG</code> is used for Java testing (all levels) and <code>Jest</code> for JavaScript unit-testing.</li>
+              <li><code>HttpUnit</code> is used to set up a simulated web server in servlet-level tests, where an actual web server is not required.</li>
+            </ul>
+          </li>
+          <li><strong>E2E</strong>: The E2E (end-to-end) component is used to interact with the application as a whole with Web browsers. Its primary function is for E2E tests.
+            <ul>
+              <li><code>Selenium (Java)</code> is used to automate E2E testing with actual Web browsers.</li>
+            </ul>
+          </li>
+          <li><strong>Client</strong>: The Client component can connect to the back end directly without using a Web browser. It is used for administrative purposes, e.g. migrating data to a new schema.</li>
+          <li><strong>Common</strong>: The Common component contains utility code (data transfer objects, helper classes, etc.) used across the application.</li>
+        </ul>
+        <p>The diagram below shows how the code in each component is organized into packages and the dependencies between them.</p>
+        <p><a href="/teammates/images/packageDiagram.png" target="_self"><img src="/teammates/images/packageDiagram.png" alt class="img-fluid"></a></p>
+        <p>Notes:</p>
+        <ul>
+          <li><code>[logic] - [ui::website] - [ui::controller]</code> represent an application of <code>Model-View-Controller</code> pattern.
+            <ul>
+              <li><code>ui::website</code> is not a real package; it is a conceptual package representing the front-end of the application.</li>
+            </ul>
+          </li>
+        </ul>
+        <h2 id="ui-component">UI Component<a class="fa fa-anchor" href="#ui-component"></a></h2>
+        <p>The diagram below shows the object structure of the UI component.</p>
+        <p><a href="/teammates/images/UiComponent.png" target="_self"><img src="/teammates/images/UiComponent.png" alt class="img-fluid"></a></p>
+        <p>Notes:</p>
+        <ul>
+          <li><code>ui::website</code> is not a Java package. It is written in Angular framework and consists of HTML, SCSS, and TypeScript files. The framework will build those files into HTML, CSS and JavaScript files ready to be used by standard Web browsers.</li>
+        </ul>
+        <p>The UI component is the first stop for 99% of all requests that are received by the application.
+          Such a request will go through the following steps:</p>
+        <ol>
+          <li>Request received by the GAE server.</li>
+          <li>Custom filters are applied according to the order specified in <code>web.xml</code>, e.g. <code>OriginCheckFilter</code>.</li>
+          <li>Request forwarded to a <code>*Servlet</code> object as specified in <code>web.xml</code> for further processing, depending on the type of request.</li>
+        </ol>
+        <p>There are two general types of requests: user-invoked requests and automated (GAE server-invoked) requests, which are processed differently.</p>
+        <h3 id="user-invoked-requests">User-invoked requests<a class="fa fa-anchor" href="#user-invoked-requests"></a></h3>
+        <p>User-invoked requests are all requests made by the users of the application, typically from the Web browser (i.e. by navigating to a particular URL of the application).
+          The request will be processed as follows:</p>
+        <p><a href="/teammates/images/UiWorkflow.png" target="_self"><img src="/teammates/images/UiWorkflow.png" alt class="img-fluid"></a></p>
+        <p>The initial request for the web page will be processed as follows:</p>
+        <ol>
+          <li>Request forwarded to <code>WebPageServlet</code>.</li>
+          <li><code>WebPageServlet</code> returns the built single web page (<code>index.html</code>).</li>
+          <li>The browser will render the page and execute the page scripts, most of the time requiring AJAX requests to the server.</li>
+        </ol>
+        <p>Subsequent AJAX requests sent to the server will be processed as follows:</p>
+        <ol>
+          <li>Request forwarded to the <code>WebApiServlet</code>.</li>
+          <li><code>WebApiServlet</code> uses the <code>ActionFactory</code> to generate the matching <code>Action</code> object, e.g. <code>InstructorHomePageAction</code>.</li>
+          <li><code>WebApiServlet</code> executes the action.
+            <ol>
+              <li>The <code>Action</code> object checks the access rights of the user. If the action is allowed, it will be performed, interacting with the <code>Logic</code> component as necessary.</li>
+              <li>The <code>Action</code> packages and processes the result into an <code>ActionResult</code> object. The most common format is <code>JsonResult</code> (requests for obtaining data or processing existing data), and other formats are defined as necessary, e.g. <code>FileDownloadResult</code> (e.g. downloading feedback session report) and <code>ImageResult</code> (e.g. profile pictures).</li>
+            </ol>
+          </li>
+          <li><code>WebApiServlet</code> sends the result back to the browser which will then process it on the front-end.</li>
+        </ol>
+        <p>Requests for static asset files (e.g. CSS, JS files, images) are served directly without going through <code>web.xml</code> configuration at all.</p>
+        <p>The Web API is protected by two layers of access control check:</p>
+        <ul>
+          <li>Origin check: This mitigates <a href="https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)">CSRF attack</a>.</li>
+          <li>Authentication and authorization check: This checks if the logged in user (or lack thereof) has sufficient privileges to trigger the API's actions.</li>
+        </ul>
+        <p>Special keys (<code>csrf key</code> and <code>backdoor key</code>) can be used to bypass each of the checks, typically for testing purpose. Those keys are strings known only to the person who deployed the application (typically, the administrator).</p>
+        <h3 id="automated-requests">Automated requests<a class="fa fa-anchor" href="#automated-requests"></a></h3>
+        <p>Automated requests are all requests sent automatically by the GAE server during specific periods of time.
+          This type of request will be processed as follows:</p>
+        <ol>
+          <li>The source of the request will be checked for administrator privilege. If this privilege is absent (e.g. non-administrator users trying to invoke the automated actions), the request will be dropped and a <code>403 Forbidden</code> status will be returned.
+            <ul>
+              <li>Requests generated by the GAE server are equipped with this privilege.</li>
+              <li>Administrators can manually invoke these requests; this is particularly useful in testing the actions associated with those requests.</li>
+            </ul>
+          </li>
+          <li>Request forwarded to the <code>AutomatedServlet</code>.</li>
+          <li><code>AutomatedServlet</code> uses the <code>AutomatedActionFactory</code> to generate the matching <code>AutomatedAction</code> object, e.g. <code>CompileLogsAction</code>.</li>
+          <li><code>AutomatedServlet</code> executes the action.</li>
+          <li>The corresponding <code>AutomatedAction</code> will be performed, interacting with the <code>Logic</code> component as necessary.</li>
+        </ol>
+        <p>GAE server sends such automated requests through two different configurations:</p>
+        <ul>
+          <li>Cron jobs: These are jobs that are automatically scheduled for a specified period of time, e.g. scheduling feedback session opening reminders. It is configured in <code>cron.xml</code>.</li>
+          <li>Task queue workers: These are hybrids of user-invoked and GAE-invoked in that they are queued by users (i.e. users request for the tasks to be added to queue), but executed by GAE (i.e. GAE determines when and which tasks in the queue are executed at any point of time). This is typically used for tasks that may take a long time to finish and can exceed the 1 minute standard request processing limit imposed by GAE. It is configured in <code>queue.xml</code> as well as the <code>TaskQueue</code> nested class of the <a href="src/main/java/teammates/common/util/Const.java">Const</a> class.</li>
+        </ul>
+        <h3 id="template-method-pattern">Template Method pattern<a class="fa fa-anchor" href="#template-method-pattern"></a></h3>
+        <ul>
+          <li>Since the high-level workflow of processing a request is same for any request (differing by the two request types only), we use the <a href="http://en.wikipedia.org/wiki/Template_method_pattern">Template Method pattern</a> to abstract the process flow into the <code>Action</code> and <code>AutomatedAction</code> classes.</li>
+        </ul>
+        <h2 id="logic-component">Logic Component<a class="fa fa-anchor" href="#logic-component"></a></h2>
+        <p>The <code>Logic</code> component handles the business logic of TEAMMATES. In particular, it is responsible for:</p>
+        <ul>
+          <li>Managing relationships between entities, e.g. cascade logic for create/update/delete.</li>
+          <li>Managing transactions, e.g. ensuring atomicity of a transaction.</li>
+          <li>Sanitizing input values received from the UI component.</li>
+          <li>Providing a mechanism for checking access control rights.</li>
+          <li>Connecting to GAE-provided or third-party APIs, e.g. for adding tasks to the task queue and for sending emails with third-party providers.</li>
+        </ul>
+        <p><a href="/teammates/images/LogicComponent.png" target="_self"><img src="/teammates/images/LogicComponent.png" alt class="img-fluid"></a></p>
+        <p>Package overview:</p>
+        <ul>
+          <li><strong><code>logic.api</code></strong>: Provides the API of the component to be accessed by the UI.</li>
+          <li><strong><code>logic.core</code></strong>: Contains the core logic of the system.</li>
+        </ul>
+        <h3 id="logic-api">Logic API<a class="fa fa-anchor" href="#logic-api"></a></h3>
+        <p>Represented by these classes:</p>
+        <ul>
+          <li><code>Logic</code>: A <a href="http://en.wikipedia.org/wiki/Facade_pattern">Facade class</a> which connects to the several <code>*Logic</code> classes to handle the logic related to various types of data and to access data from the <code>Storage</code> component.</li>
+          <li><code>GateKeeper</code>: Checks access rights of a user for a given action.</li>
+          <li><code>EmailGenerator</code>: Generates emails to be sent.</li>
+          <li><code>EmailSender</code>: Sends email with the provider chosen based on the build configuration. It connects to the email provider by using the appropriate <code>*Service</code> class.</li>
+          <li><code>TaskQueuer</code>: Adds tasks to the task queue. It connects to GAE's task queue API.</li>
+        </ul>
+        <h3 id="policies">Policies<a class="fa fa-anchor" href="#policies"></a></h3>
+        <p>Access control:</p>
+        <ul>
+          <li>Although this component provides methods to perform access control, the API itself is not access controlled. The UI is expected to check access control (using <code>GateKeeper</code> class) before calling a method in the <code>Logic</code>.</li>
+        </ul>
+        <p>API for creating entities:</p>
+        <ul>
+          <li>Null parameters: Causes an assertion failure.</li>
+          <li>Invalid parameters: Throws <code>InvalidParametersException</code>.</li>
+          <li>Entity already exists: Throws <code>EntityAlreadyExistsException</code> (escalated from Storage level).</li>
+        </ul>
+        <p>API for retrieving entities:</p>
+        <ul>
+          <li>Attempting to retrieve objects using <code>null</code> parameters: Causes an assertion failure.</li>
+          <li>Entity not found:
+            <ul>
+              <li>Returns <code>null</code> if the target entity not found. This way, read operations can be used easily for checking the existence of an entity.</li>
+            </ul>
+          </li>
+        </ul>
+        <p>API for updating entities:</p>
+        <ul>
+          <li>Update is done using <code>*UpdateOptions</code> inside every <code>*Attributes</code>. The <code>UpdateOptions</code> will specify what is used to identify the entity to update and what will be updated.</li>
+          <li>Entity not found: Throws <code>EntityDoesNotExistException</code>.</li>
+          <li>Invalid parameters: Throws <code>InvalidParametersException</code>.</li>
+        </ul>
+        <p>API for deleting entities:</p>
+        <ul>
+          <li>FailDeleteSilentlyPolicy: In general, delete operation do not throw exceptions if the target entity does not exist. This is because if it does not exist, it is as good as deleted.</li>
+          <li>Cascade policy: When a parent entity is deleted, entities that have referential integrity with the deleted entity should also be deleted.
+            Refer to the API for the cascade logic.</li>
+        </ul>
+        <h2 id="storage-component">Storage Component<a class="fa fa-anchor" href="#storage-component"></a></h2>
+        <p>The <code>Storage</code> component performs CRUD (Create, Read, Update, Delete) operations on data entities individually.
+          It contains minimal logic beyond what is directly relevant to CRUD operations.
+          In particular, it is reponsible for:</p>
+        <ul>
+          <li>Validating data inside entities before creating/updating them, to ensure they are in a valid state.</li>
+          <li>Hiding the complexities of datastore from the <code>Logic</code> component. All GQL queries are to be contained inside the <code>Storage</code> component.</li>
+          <li>Hiding the persistable objects: Classes in the <code>storage::entity</code> package are not visible outside this component to hide information specific to data persistence.
+            <ul>
+              <li>Instead, a corresponding non-persistent <a href="http://en.wikipedia.org/wiki/Data_transfer_object">data transfer object</a> named <code>*Attributes</code> (e.g., <code>CourseAttributes</code> is the data transfer object for <code>Course</code> entities) object is returned. These datatransfer classes are in <code>common::datatransfer</code> package, to be explained later.</li>
+            </ul>
+          </li>
+        </ul>
+        <p>The <code>Storage</code> component does not perform any cascade delete/create operations. Cascade logic is handled by the <code>Logic</code> component.</p>
+        <p><a href="/teammates/images/StorageComponent.png" target="_self"><img src="/teammates/images/StorageComponent.png" alt class="img-fluid"></a></p>
+        <p>Package overview:</p>
+        <ul>
+          <li><strong><code>storage.api</code></strong>: Provides the API of the component to be accessed by the logic component.</li>
+          <li><strong><code>storage.entity</code></strong>: Classes that represent persistable entities.</li>
+          <li><strong><code>storage.search</code></strong>: Classes for dealing with searching and indexing.</li>
+        </ul>
+        <p><a href="/teammates/images/StorageClassDiagram.png" target="_self"><img src="/teammates/images/StorageClassDiagram.png" alt class="img-fluid"></a></p>
+        <p>Note that the navigability of the association links between entity objects appear to be in the reverse direction of what we see in a normal OOP design.
+          This is because we want to keep the data schema flexible so that new entity types can be added later with minimal modifications to existing elements.</p>
+        <h3 id="storage-api">Storage API<a class="fa fa-anchor" href="#storage-api"></a></h3>
+        <p>Represented by the <code>*Db</code> classes. These classes act as the bridge to the GAE Datastore.</p>
+        <h3 id="policies-2">Policies<a class="fa fa-anchor" href="#policies-2"></a></h3>
+        <p>Add and Delete operations try to wait until data is persisted in the datastore before returning. This is not enough to compensate for eventual consistency involving multiple servers in the GAE production enviornment. However, it is expected to avoid test failures caused by eventual consistency in dev server and reduce such problems in the live server.
+          Note: 'Eventual consistency' here means it takes some time for a database operation to propagate across all serves of the Google's distributed datastore. As a result, the data may be in an inconsistent states for short periods of time although things should become consistent 'eventually'. For example, an object we deleted may appear to still exist for a short while.</p>
+        <p>Implementation of Transaction Control has been minimized due to limitations of GAE environment and the nature of our data schema.</p>
+        <p>API for creating:</p>
+        <ul>
+          <li>Attempt to create an entity that already exists: Throws <code>EntityAlreadyExistsException</code>.</li>
+          <li>Attempt to create an entity with invalid data: Throws <code>InvalidParametersException</code>.</li>
+        </ul>
+        <p>API for retrieving:</p>
+        <ul>
+          <li>Attempt to retrieve an entity that does not exist: Returns <code>null</code>.</li>
+        </ul>
+        <p>API for updating:</p>
+        <ul>
+          <li>Attempt to update an entity that does not exist: Throws <code>EntityDoesNotExistException</code>.</li>
+          <li>Attempt to update an entity with invalid data: Throws <code>InvalidParametersException</code>.</li>
+        </ul>
+        <p>API for deleting:</p>
+        <ul>
+          <li>Attempt to delete an entity that does not exist: Fails silently.</li>
+        </ul>
+        <h2 id="common-component">Common Component<a class="fa fa-anchor" href="#common-component"></a></h2>
+        <p>The Common component contains common utilities used across TEAMMATES.</p>
+        <p><a href="/teammates/images/CommonComponent.png" target="_self"><img src="/teammates/images/CommonComponent.png" alt class="img-fluid"></a></p>
+        <p>Package overview:</p>
+        <ul>
+          <li><strong><code>common.util</code></strong>: Contains utility classes.</li>
+          <li><strong><code>common.exceptions</code></strong>: Contains custom exceptions.</li>
+          <li><strong><code>common.datatransfer</code></strong>: Contains data transfer objects.</li>
+        </ul>
+        <p><code>common.datatransfer</code> package contains lightweight &quot;data transfer object&quot; classes for transferring data among components. They can be combined in various ways to transfer structured data between components. Given below are three examples.</p>
+        <p><a href="/teammates/images/dataTransferClasses.png" target="_self"><img src="/teammates/images/dataTransferClasses.png" alt class="img-fluid"></a></p>
+        <ol>
+          <li><code>Test Driver</code> can use the <code>DataBundle</code> in this manner to send an arbitrary number of objects to be persisted in the database.</li>
+          <li>This structure can be used to transfer data of a course (e.g., when constructing the home page for an instructor).</li>
+          <li>This structure can be used to send results of a feedback session (e.g., when showing a feedback session report to an instructor).</li>
+        </ol>
+        <p>Some of these classes are methodless (and thus more of a data structure rather than a class); these classes use public variables for data for easy access.</p>
+        <h2 id="test-driver-component">Test Driver Component<a class="fa fa-anchor" href="#test-driver-component"></a></h2>
+        <p>This component automates the testing of TEAMMATES.</p>
+        <p><a href="/teammates/images/TestDriverComponent.png" target="_self"><img src="/teammates/images/TestDriverComponent.png" alt class="img-fluid"></a></p>
+        <p>Package overview:</p>
+        <ul>
+          <li><strong><code>test.driver</code></strong>: Contains infrastructure and helpers needed for running the tests.</li>
+          <li><strong><code>test.cases</code></strong>: Contains test cases.
+            Sub-packages:
+            <ul>
+              <li><strong><code>.testdriver</code></strong>: Component test cases for testing the test driver infrastructure and helpers.</li>
+              <li><strong><code>.datatransfer</code></strong>: Component test cases for testing the datatransfer objects from the <code>Common</code> component.</li>
+              <li><strong><code>.util</code></strong>: Component test cases for testing the utility classes from the <code>Common</code> component.</li>
+              <li><strong><code>.logic</code></strong>: Component test cases for testing the <code>Logic</code> component.</li>
+              <li><strong><code>.storage</code></strong>: Component test cases for testing the <code>Storage</code> component.</li>
+              <li><strong><code>.search</code></strong>: Component test cases for testing the search functions.</li>
+              <li><strong><code>.webapi</code></strong>: System test cases for testing the user-invoked actions.</li>
+              <li><strong><code>.automated</code></strong>: System test cases for testing the system-automated actions (manually invoked during testing).</li>
+            </ul>
+          </li>
+        </ul>
+        <p>Notes:</p>
+        <ul>
+          <li>Component tests: Some of these are pure unit tests (i.e. testing one component in isolation) while others are integration tests that test units as well as integration of units with each other.</li>
+          <li>Front-end files (particularly TypeScript) are tested separately with <code>Jest</code>. The test cases are found in <code>*.spec.ts</code> files.</li>
+        </ul>
+        <p>This is how TEAMMATES testing maps to standard types of testing.</p>
+        <pre><code class="hljs">Normal
+|-----acceptance tests-----|-------------------system tests-------------------|-----integration tests-----|-----unit tests-----|
+|--------manual testing--------|------automated E2E tests------|-------------------automated component tests-------------------|
+TEAMMATES
+</code></pre>
+        <h2 id="e2e-component">E2E Component<a class="fa fa-anchor" href="#e2e-component"></a></h2>
+        <p>The E2E component has no knowledge of the internal workings of the application and can only interact either with Web browser (as a whole application) or REST API calls (for the back-end logic). Its primary function is for E2E tests and L&amp;P (Load &amp; Performance) tests.</p>
+        <p><a href="/teammates/images/E2EComponent.png" target="_self"><img src="/teammates/images/E2EComponent.png" alt class="img-fluid"></a></p>
+        <p>Package overview:</p>
+        <ul>
+          <li><strong><code>e2e.util</code></strong>: Contains helpers needed for running E2E tests.</li>
+          <li><strong><code>e2e.pageobjects</code></strong>: Contains abstractions of the pages as they appear on a Browser (i.e. SUTs).</li>
+          <li><strong><code>e2e.cases</code></strong>: Contains test cases.
+            <ul>
+              <li><strong><code>.util</code></strong>: Component test cases for testing the test helpers.</li>
+              <li><strong><code>.e2e</code></strong>: System test cases for testing the application as a whole.</li>
+              <li><strong><code>.lnp</code></strong>: Load and performance tests (experimental).</li>
+            </ul>
+          </li>
+        </ul>
+        <h2 id="client-component">Client Component<a class="fa fa-anchor" href="#client-component"></a></h2>
+        <p>The Client component contains scripts that can connect directly to the application back-end for administrative purposes, such as migrating data to a new schema and calculating statistics.</p>
+        <p><a href="/teammates/images/ClientComponent.png" target="_self"><img src="/teammates/images/ClientComponent.png" alt class="img-fluid"></a></p>
+        <p>Package overview:</p>
+        <ul>
+          <li><strong><code>client.util</code></strong>: Contains helpers needed for client scripts.</li>
+          <li><strong><code>client.remoteapi</code></strong>: Classes needed to connect to the back end directly.</li>
+          <li><strong><code>client.scripts</code></strong>: Scripts that deal with the back end data for administrative purposes.</li>
+        </ul>
+      </div>
+    </div>
+    <footer>
+      <div class="text-center">
+        This is a dynamic height footer that supports markdown <span>😄</span>!
+      </div>
+
+      <div class="text-center">
+        <small>[Generated by <a href="https://markbind.org/">MarkBind 2.3.0</a> on Tue, 23 Apr 2019 07:31:51 GMT]</small></div>
+    </footer>
+  </div>
+</body>
+<script src="markbind/js/vue.min.js"></script>
+<script src="markbind/js/vue-strap.min.js"></script>
+<script src="markbind/js/bootstrap-utility.min.js"></script>
+<script src="markbind/js/polyfill.min.js"></script>
+<script src="markbind/js/bootstrap-vue.min.js"></script>
+<script>
+  const baseUrl = '/teammates'
+  const enableSearch = true
+</script>
+<script src="markbind/js/setup.js"></script>
+<script src="markbind/layouts/default/scripts.js"></script>
+
+</html>

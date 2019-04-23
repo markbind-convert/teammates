@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="MarkBind 2.3.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link rel="stylesheet" href="markbind/css/bootstrap.min.css">
+  <link rel="stylesheet" href="markbind/css/bootstrap-vue.min.css">
+  <link rel="stylesheet" href="markbind/fontawesome/css/all.min.css">
+  <link rel="stylesheet" href="markbind/glyphicons/css/bootstrap-glyphicons.min.css">
+  <link rel="stylesheet" href="markbind/css/github.min.css">
+  <link rel="stylesheet" href="markbind/css/markbind.css">
+  <link rel="stylesheet" href="markbind/layouts/default/styles.css">
+  <link rel="stylesheet" href="markbind/css/site-nav.css">
+
+
+
+</head>
+
+<body>
+  <div id="app">
+    <header>
+      <navbar placement="top" type="inverse">
+        <a slot="brand" href="/teammates/index.html" title="Home" class="navbar-brand"><i class="far fa-file-image"></i></a>
+        <li><a href="/teammates/index.html" class="nav-link">HOME</a></li>
+        <li><a href="/teammates/about.html" class="nav-link">ABOUT</a></li>
+        <li slot="right">
+          <form class="navbar-form">
+            <searchbar :data="searchData" placeholder="Search" :on-hit="searchCallback" menu-align-right></searchbar>
+          </form>
+        </li>
+      </navbar>
+    </header>
+    <div id="flex-body">
+      <nav id="site-nav" class="navbar navbar-light bg-transparent">
+        <div class="position-sticky position-top site-nav-spacer viewport-height-90 scrollable slim-scroll">
+          <ul class="px-0 site-nav-list">
+            <li class="mt-2"><a href="/teammates/index.html" class="site-nav__a">Index</a></li>
+            <li class="mt-2"><a href="/teammates/CONTRIBUTING.html" class="site-nav__a">CONTRIBUTING</a></li>
+            <li class="mt-2"><a href="/teammates/README.html" class="site-nav__a">README</a></li>
+            <li class="mt-2"><a href="/teammates/best-practices/coding.html" class="site-nav__a">Coding</a></li>
+            <li class="mt-2"><a href="/teammates/best-practices/data-migration.html" class="site-nav__a">Data Migration</a></li>
+            <li class="mt-2"><a href="/teammates/best-practices/testing.html" class="site-nav__a">Testing</a></li>
+            <li class="mt-2"><a href="/teammates/best-practices/ui-design.html" class="site-nav__a">Ui Design</a></li>
+            <li class="mt-2"><a href="/teammates/captcha.html" class="site-nav__a">Captcha</a></li>
+            <li class="mt-2"><a href="/teammates/design.html" class="site-nav__a">Design</a></li>
+            <li class="mt-2"><a href="/teammates/development.html" class="site-nav__a current">Development</a></li>
+            <li class="mt-2"><a href="/teammates/emails.html" class="site-nav__a">Emails</a></li>
+            <li class="mt-2"><a href="/teammates/glossary.html" class="site-nav__a">Glossary</a></li>
+            <li class="mt-2"><a href="/teammates/ide-setup.html" class="site-nav__a">Ide Setup</a></li>
+            <li class="mt-2"><a href="/teammates/issues.html" class="site-nav__a">Issues</a></li>
+            <li class="mt-2"><a href="/teammates/overview.html" class="site-nav__a">Overview</a></li>
+            <li class="mt-2"><a href="/teammates/performance-testing.html" class="site-nav__a">Performance Testing</a></li>
+            <li class="mt-2"><a href="/teammates/process.html" class="site-nav__a">Process</a></li>
+            <li class="mt-2"><a href="/teammates/setting-up.html" class="site-nav__a">Setting Up</a></li>
+            <li class="mt-2"><a href="/teammates/snapshot-testing.html" class="site-nav__a">Snapshot Testing</a></li>
+            <li class="mt-2"><a href="/teammates/static-analysis.html" class="site-nav__a">Static Analysis</a></li>
+            <li class="mt-2"><a href="/teammates/troubleshooting-guide.html" class="site-nav__a">Troubleshooting Guide</a></li>
+          </ul>
+        </div>
+      </nav>
+      <div id="content-wrapper">
+        <h1 id="development-guidelines">Development Guidelines<a class="fa fa-anchor" href="#development-guidelines"></a></h1>
+        <p>These are the common tasks involved when working on features, enhancements, bug fixes, etc. for TEAMMATES.</p>
+        <ul>
+          <li><a href="#managing-the-dev-server-front-end">Managing the dev server: front-end</a></li>
+          <li><a href="#managing-the-dev-server-back-end">Managing the dev server: back-end</a></li>
+          <li><a href="#building-front-end-files">Building front-end files</a></li>
+          <li><a href="#logging-in-to-a-teammates-instance">Logging in to a TEAMMATES instance</a></li>
+          <li><a href="#testing">Testing</a></li>
+          <li><a href="#deploying-to-a-staging-server">Deploying to a staging server</a></li>
+          <li><a href="#running-client-scripts">Running client scripts</a></li>
+          <li><a href="#config-points">Config points</a></li>
+        </ul>
+        <p>The instructions in all parts of this document work for Linux, OS X, and Windows, with the following pointers:</p>
+        <ul>
+          <li>Replace <code>./gradlew</code> to <code>gradlew.bat</code> if you are using Windows.</li>
+          <li>All the commands are assumed to be run from the root project folder, unless otherwise specified.</li>
+          <li>It is assumed that the development environment has been correctly set up. If this step has not been completed, refer to <a href="/teammates/setting-up.md">this document</a>.</li>
+        </ul>
+        <blockquote>
+          <p>If you encounter any problems during the any of the processes, please refer to our <a href="/teammates/troubleshooting-guide.md">troubleshooting guide</a> before posting a help request on our <a href="https://github.com/TEAMMATES/teammates/issues">issue tracker</a>.</p>
+        </blockquote>
+        <h2 id="managing-the-dev-server-front-end">Managing the dev server: front-end<a class="fa fa-anchor" href="#managing-the-dev-server-front-end"></a></h2>
+        <blockquote>
+          <p><code>Dev server</code> is the server run in your local machine.</p>
+        </blockquote>
+        <p>Front-end dev server is the Angular-based server handling the user interface.</p>
+        <p>First, you need to compile some type definitions from the back-end to be used in this dev server. Run the following command:</p>
+        <pre><code class="hljs sh">./gradlew generateTypes
+</code></pre>
+        <p>To start the dev server, run the following command until you see something like <code>｢wdm｣: Compiled successfully.</code>:</p>
+        <pre><code class="hljs sh">npm run start
+</code></pre>
+        <p>The dev server URL will be given at the console output, e.g. <code>http://localhost:4200</code>.</p>
+        <p>To stop the dev server, press <code>Ctrl + C</code>.</p>
+        <ul>
+          <li>
+            <p>The dev server is run in <em>watch mode</em> by default, i.e. any saved change to the front-end code will be propagated to the server immediately.</p>
+          </li>
+          <li>
+            <p>The dev server is also run in <em>live reload mode</em> by default, i.e. any saved change to the front-end code will automatically load all dev server web pages currently being opened.
+              To disable this behaviour, run the dev server as follows instead:</p>
+            <pre><code class="hljs sh">npm run start -- --live-reload=<span class="hljs-literal">false</span>
+</code></pre>
+          </li>
+        </ul>
+        <h2 id="managing-the-dev-server-back-end">Managing the dev server: back-end<a class="fa fa-anchor" href="#managing-the-dev-server-back-end"></a></h2>
+        <p>Back-end dev server is the Google App Engine-based server handling all the business logic, including data storage.</p>
+        <h3 id="with-command-line">With command line<a class="fa fa-anchor" href="#with-command-line"></a></h3>
+        <h4 id="starting-the-dev-server">Starting the dev server</h4>
+        <p>To start the server in the background, run the following command
+          and wait until the task exits with a <code>BUILD SUCCESSFUL</code>:</p>
+        <pre><code class="hljs sh">./gradlew appengineStart
+</code></pre>
+        <p>To start the server in the foreground (e.g. if you want the console output to be visible),
+          run the following command instead:</p>
+        <pre><code class="hljs sh">./gradlew appengineRun
+</code></pre>
+        <p>The dev server URL will be <code>http://localhost:8080</code> as specified in <code>build.gradle</code>.</p>
+        <h4 id="stopping-the-dev-server">Stopping the dev server</h4>
+        <p>If you started the server in the background, run the following command to stop it:</p>
+        <pre><code class="hljs sh">./gradlew appengineStop
+</code></pre>
+        <p>If the server is running in the foreground, press <code>Ctrl + C</code> to stop it or run the above command in a new console.</p>
+        <h3 id="with-eclipse">With Eclipse<a class="fa fa-anchor" href="#with-eclipse"></a></h3>
+        <h4 id="starting-the-dev-server-2">Starting the dev server</h4>
+        <p>Right-click on the project folder and choose <code>Run As → App Engine</code>.<br>
+          After some time, you should see this message (or similar) on the Eclipse console: <code>Dev App Server is now running</code>.
+          The dev server URL will be given at the console output, e.g. <code>http://localhost:8080</code>.</p>
+        <h4 id="stopping-the-dev-server-2">Stopping the dev server</h4>
+        <p>Click the &quot;Terminate&quot; icon on the Eclipse console.</p>
+        <h3 id="with-intellij">With IntelliJ<a class="fa fa-anchor" href="#with-intellij"></a></h3>
+        <h4 id="starting-the-dev-server-3">Starting the dev server</h4>
+        <p>Go to <code>Run → Run...</code> and select <code>Google App Engine Standard Local Server</code> in the pop-up box.</p>
+        <h4 id="stopping-the-dev-server-3">Stopping the dev server</h4>
+        <p>Go to <code>Run → Stop 'Google App Engine Standard Local Server'</code>.</p>
+        <h2 id="building-front-end-files">Building front-end files<a class="fa fa-anchor" href="#building-front-end-files"></a></h2>
+        <p>In order for the dev server to be able to serve both the front-end and the back-end of the application, the front-end files need to be <em>bundled and transpiled</em> (afterwards <code>built</code>).</p>
+        <p>Run the following commands to build the front-end files for the application's use in production mode:</p>
+        <pre><code class="hljs sh"><span class="hljs-comment"># Generate type definition file from back-end</span>
+./gradlew generateTypes
+
+<span class="hljs-comment"># Bundle, transpile, and minify front-end files</span>
+npm run build
+</code></pre>
+        <p>After this, the back-end dev server will also be able to serve the front-end.</p>
+        <h2 id="logging-in-to-a-teammates-instance">Logging in to a TEAMMATES instance<a class="fa fa-anchor" href="#logging-in-to-a-teammates-instance"></a></h2>
+        <p>This instruction set applies for both dev server and production server, with slight differences explained where applicable.</p>
+        <ul>
+          <li>The local dev server is assumed to be accessible at <code>http://localhost:8080</code>.
+            <ul>
+              <li>This instruction also works when the local front-end dev server and back-end dev server are separate. In that case, the dev server address will be the front-end's, e.g. <code>http://localhost:4200</code>. However, a back-end server needs to be running in order for the authentication logic to work.</li>
+            </ul>
+          </li>
+          <li>If a URL is given as relative, prepend the server URL to access the page, e.g <code>/web/page/somePage</code> is accessible in dev server at <code>http://localhost:8080/web/page/somePage</code>.</li>
+        </ul>
+        <h3 id="as-administrator">As administrator<a class="fa fa-anchor" href="#as-administrator"></a></h3>
+        <ol>
+          <li>Go to any administrator page, e.g <code>/web/admin/home</code>.</li>
+          <li>On the dev server, log in using any username, but remember to check the <code>Log in as administrator</code> check box. You will have the required access.</li>
+          <li>On the production server, you will be granted the access only if your account has administrator permission to the application.</li>
+          <li>When logged in as administrator, <em><strong>masquerade mode</strong></em> can also be used to impersonate instructors and students by adding <code>user=username</code> to the URL
+            e.g <code>http://localhost:8080/web/student/home?user=johnKent</code>.</li>
+        </ol>
+        <h3 id="as-instructor">As instructor<a class="fa fa-anchor" href="#as-instructor"></a></h3>
+        <p>You need an instructor account which can be created by administrators.</p>
+        <ol>
+          <li>Log in to <code>/web/admin/home</code> as an administrator.</li>
+          <li>Enter credentials for an instructor, e.g<br>
+            Name: <code>John Dorian</code><br>
+            Email: <code>teammates.instructor@university.edu</code><br>
+            Institution: <code>National University of Singapore</code><br></li>
+          <li>The system will send an email containing the join link to the added instructor.<br>
+            On the dev server, this email will not be sent. Instead, you can use the join link given after adding an instructor to complete the joining process.</li>
+        </ol>
+        <p>Alternatively, an instructor can create other instructors for a course if s/he has sufficient privileges. A course co-owner, for example, will have such a privilege.</p>
+        <ol>
+          <li>Ensure that there is a course to add instructors to and an instructor in that course with the privilege to add instructors.</li>
+          <li>Log in as that instructor.</li>
+          <li>Add the instructors for the course (<code>Instructors</code> → <code>View/Edit</code>).</li>
+          <li>The system will send an email containing the join link to each added instructor. Again, this will not happen on the dev server, so additional steps are required.</li>
+          <li>Log out and log in to <code>http://localhost:8080/web/admin/search</code> as administrator.</li>
+          <li>Search for the instructor you added in. From the search results, click anywhere on the desired row to get the course join link for that instructor.</li>
+          <li>Log out and use that join link to log in as the new instructor.</li>
+        </ol>
+        <h3 id="as-student">As student<a class="fa fa-anchor" href="#as-student"></a></h3>
+        <p>You need a student account which can be created by instructors (with sufficient privileges).</p>
+        <p>The steps for adding a student is almost identical to the steps for adding instructors by another instructor:</p>
+        <ul>
+          <li>Where appropriate, change the reference to &quot;instructor&quot; to &quot;student&quot;.</li>
+          <li><code>Students</code> → <code>Enroll</code> to add students for the course.</li>
+        </ul>
+        <p><strong>Alternative</strong>: Run the test cases, they create several student and instructor accounts in the datastore. Use one of them to log in.</p>
+        <h3 id="logging-in-without-ui">Logging in without UI<a class="fa fa-anchor" href="#logging-in-without-ui"></a></h3>
+        <p>In dev server, it is also possible to &quot;log in&quot; without UI (e.g. when only testing API endpoints). In order to do that, you need to submit the following API call:</p>
+        <pre><code class="hljs sh">POST http://localhost:8080/_ah/login?action=Log+In&amp;email=<span class="hljs-built_in">test</span>@example.com&amp;isAdmin=on
+</code></pre>
+        <p>where <code>email=test@example.com</code> and <code>isAdmin=on</code> can be replaced as appropriate.</p>
+        <p>The back-end server will return cookies which will subsequently be used to authenticate your requests.</p>
+        <p>To &quot;log out&quot;, submit the following API call:</p>
+        <pre><code class="hljs sh">POST http://localhost:8080/_ah/login?action=Log+Out
+</code></pre>
+        <h2 id="testing">Testing<a class="fa fa-anchor" href="#testing"></a></h2>
+        <p>There are two big categories of testing in TEAMMATES:</p>
+        <ul>
+          <li><strong>Component tests</strong>: white-box unit and integration tests, i.e. they test the application components with full knowledge of the components' internal workings. This is configured in <code>src/test/resources/testng-component.xml</code> (back-end) and <code>src/web/jest.config.js</code> (front-end).</li>
+          <li><strong>E2E (end-to-end) tests</strong>: black-box tests, i.e. they test the application as a whole without knowing any internal working. This is configured in <code>src/e2e/resources/testng-e2e.xml</code>.</li>
+        </ul>
+        <h3 id="configuring-browsers-for-e2e-testing">Configuring browsers for E2E Testing<a class="fa fa-anchor" href="#configuring-browsers-for-e2e-testing"></a></h3>
+        <p>TEAMMATES E2E testing requires Firefox or Chrome.</p>
+        <p>Before running tests, modify <code>src/e2e/resources/test.properties</code> if necessary, e.g. to configure which browser and test accounts to use.</p>
+        <h4 id="using-firefox">Using Firefox</h4>
+        <ul>
+          <li>
+            <p>You need to use geckodriver for testing with Firefox.</p>
+            <ul>
+              <li>Download the latest stable geckodriver from <a href="https://github.com/mozilla/geckodriver/releases">here</a>.
+                The site will also inform the versions of Firefox that can be used with the driver.</li>
+              <li>Specify the path to the geckodriver executable in <code>test.geckodriver.path</code> value in <code>test.properties</code>.</li>
+            </ul>
+          </li>
+          <li>
+            <p>If you want to use a Firefox version other than your computer's default, specify the custom path in <code>test.firefox.path</code> value in <code>test.properties</code>.</p>
+          </li>
+          <li>
+            <p>If you are planning to test changes to JavaScript code, disable JavaScript caching for Firefox:</p>
+            <ul>
+              <li>Enter <code>about:config</code> into the Firefox address bar and set <code>network.http.use-cache</code> (or <code>browser.cache.disk.enable</code> in newer versions of Firefox) to <code>false</code>.</li>
+            </ul>
+          </li>
+        </ul>
+        <h4 id="using-chrome">Using Chrome</h4>
+        <ul>
+          <li>
+            <p>You need to use chromedriver for testing with Chrome.</p>
+            <ul>
+              <li>Download the latest stable chromedriver from <a href="https://sites.google.com/a/chromium.org/chromedriver/downloads">here</a>.
+                The site will also inform the versions of Chrome that can be used with the driver.</li>
+              <li>Specify the path to the chromedriver executable in <code>test.chromedriver.path</code> value in <code>test.properties</code>.</li>
+            </ul>
+          </li>
+          <li>
+            <p>If you are planning to test changes to JavaScript code, disable JavaScript caching for Chrome:</p>
+            <ul>
+              <li>Press Ctrl+Shift+J to bring up the Web Console.</li>
+              <li>Click on the settings button at the bottom right corner.</li>
+              <li>Under the General tab, check &quot;Disable Cache&quot;.</li>
+            </ul>
+          </li>
+          <li>
+            <p>The chromedriver process started by the test suite will not automatically get killed after the tests have finished executing.<br>
+              You will need to manually kill these processes after the tests are done.</p>
+            <ul>
+              <li>On Windows, use the Task Manager or <code>taskkill /f /im chromedriver.exe</code> command.</li>
+              <li>On OS X, use the Activity Monitor or <code>sudo killall chromedriver</code> command.</li>
+            </ul>
+          </li>
+        </ul>
+        <h3 id="running-the-tests">Running the tests<a class="fa fa-anchor" href="#running-the-tests"></a></h3>
+        <ul>
+          <li>Other than component tests and E2E tests, there are also:
+            <ul>
+              <li><strong>Failed tests</strong>: The failed tests from the previous run. The configuration file is auto-generated and can be found in <code>test-output/testng-failed.xml</code>.</li>
+              <li><strong>All tests</strong>: In IDEs, an additional configuration to run both component tests and E2E tests simultaneously are provided.</li>
+            </ul>
+          </li>
+          <li>When running the test cases, a few cases may fail (this can happen due to timing issues). They can be re-run until they pass without affecting the accuracy of the tests.</li>
+        </ul>
+        <h4 id="running-the-tests-with-command-line">Running the tests with command line</h4>
+        <p>To run all front-end component tests in watch mode (i.e. any change to source code will automatically reload the tests), run the following command:</p>
+        <pre><code class="hljs sh">npm run <span class="hljs-built_in">test</span>
+</code></pre>
+        <p>To run all front-end component tests once and generate coverage data afterwards, run the following command:</p>
+        <pre><code class="hljs sh">npm run coverage
+</code></pre>
+        <p>To run an individual test in a test file, change <code>it</code> in the <code>*.spec.ts</code> file to <code>fit</code>.</p>
+        <p>To run all tests in a test file (or all test files matching a pattern), you can use Jest's watch mode and filter by filename pattern.</p>
+        <p>Back-end component tests and E2E tests follow this configuration:</p>
+        <div class="table-responsive">
+          <table class="markbind-table table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th>Test suite</th>
+                <th>Command</th>
+                <th>Results can be viewed in</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>Component tests</code></td>
+                <td><code>./gradlew componentTests</code></td>
+                <td><code>{project folder}/build/reports/component-test-try-{n}/index.html</code>, where <code>{n}</code> is the sequence number of the test run</td>
+              </tr>
+              <tr>
+                <td><code>E2E tests</code></td>
+                <td><code>./gradlew e2eTests</code></td>
+                <td><code>{project folder}/build/reports/e2e-test-try-{n}/index.html</code>, where <code>{n}</code> is the sequence number of the test run</td>
+              </tr>
+              <tr>
+                <td><code>Failed tests</code></td>
+                <td><code>./gradlew failedTests</code></td>
+                <td><code>{project folder}/build/reports/test-failed/index.html</code></td>
+              </tr>
+              <tr>
+                <td>Any individual test</td>
+                <td><code>./gradlew test -Dtest.single=TestClassName</code></td>
+                <td><code>{project folder}/build/reports/tests/index.html</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <ul>
+          <li><code>Component tests</code> and <code>E2E tests</code> will be run in their entirety once and the failed tests will be re-run a few times. All other test suites will be run once and only once.</li>
+          <li>Before running <code>E2E tests</code>, it is important to have the both front-end and back-end dev servers running locally first if you are testing against them.</li>
+        </ul>
+        <p>You can generate the coverage data with <code>jacocoReport</code> task after running tests, e.g.:</p>
+        <pre><code class="hljs sh">./gradlew appengineRun componentTests jacocoReport
+</code></pre>
+        <p>The report can be found in the <code>build/reports/jacoco/jacocoReport/</code> directory.</p>
+        <h4 id="running-the-tests-with-eclipse">Running the tests with Eclipse</h4>
+        <p>Only back-end component tests and E2E tests are supported.</p>
+        <p>Run tests using the configurations available under the green <code>Run</code> button on the Eclipse toolbar.</p>
+        <p>Sometimes, Eclipse does not show these options immediately after you set up the project. &quot;Refreshing&quot; the project should fix that.</p>
+        <p>To run individual tests, right-click on the test files on the project explorer and choose <code>Run As → TestNG Test</code>.</p>
+        <p>To generate code coverage data:</p>
+        <ul>
+          <li>You need <a href="https://marketplace.eclipse.org/content/eclemma-java-code-coverage">EclEmma Java Code Coverage plugin</a>.</li>
+          <li>Choose <code>Coverage as TestNG Test</code> instead of the usual <code>Run as TestNG Test</code> to run the specified test or test suite. The coverage will be reported in Eclipse after the test run is over.</li>
+        </ul>
+        <h4 id="running-the-tests-with-intellij">Running the tests with IntelliJ</h4>
+        <p>Only back-end component tests and E2E tests are supported.</p>
+        <p>Run tests using the configurations available under <code>Run → Run...</code>.</p>
+        <p>To run individual tests, right-click on the test files on the project explorer and choose <code>Run</code>.</p>
+        <p>To measure code coverage, use <code>Run → Run... → CI Tests → ▶ → Cover</code>.</p>
+        <p>Alternatively, you can right click a class with TestNG test(s) and click <code>Run '$FileClass$' with Coverage</code>, this will use IntelliJ IDEA's code coverage runner.
+          You can further configure your code coverage settings by referring to <a href="https://www.jetbrains.com/help/idea/code-coverage.html">IntelliJ IDEA's documentation</a>.</p>
+        <h3 id="testing-against-production-server">Testing against production server<a class="fa fa-anchor" href="#testing-against-production-server"></a></h3>
+        <p>If you are testing against a production server (staging server or live server), some additional tasks need to be done.</p>
+        <ol>
+          <li>
+            <p>You need to setup a <code>Gmail API</code><sup>1</sup> as follows:</p>
+            <ul>
+              <li><a href="https://github.com/TEAMMATES/teammates-ops/blob/master/platform-guide.md">Obtain a Gmail API credentials</a> and download it.</li>
+              <li>Copy the file to <code>src/e2e/resources/gmail-api</code> (create the <code>gmail-api</code> folder) of your project and rename it to <code>client_secret.json</code>.</li>
+              <li>It is also possible to use the Gmail API credentials from any other Google Cloud Platform project for this purpose.</li>
+            </ul>
+          </li>
+          <li>
+            <p>Edit <code>src/e2e/resources/test.properties</code> as instructed is in its comments.</p>
+            <ul>
+              <li>In particular, you will need legitimate Google accounts to be used for testing.</li>
+            </ul>
+          </li>
+          <li>
+            <p>Run the full test suite or any subset of it as how you would have done it in dev server.</p>
+            <ul>
+              <li>You may want to run <code>InstructorCourseDetailsPageUiTest</code> standalone first because you would need to login to test accounts for the first time.</li>
+              <li>Do note that the GAE daily quota is usually not enough to run the full test suite, in particular for accounts with no billing enabled.</li>
+            </ul>
+          </li>
+        </ol>
+        <p><sup>1</sup> This setup is necessary because our test suite uses the Gmail API to access Gmail accounts used for testing (these accounts are specified in <code>test.properties</code>) to confirm that those accounts receive the expected emails from TEAMMATES.
+          This is needed only when testing against a production server because no actual emails are sent by the dev server and therefore delivery of emails is not tested when testing against the dev server.</p>
+        <h2 id="deploying-to-a-staging-server">Deploying to a staging server<a class="fa fa-anchor" href="#deploying-to-a-staging-server"></a></h2>
+        <blockquote>
+          <p><code>Staging server</code> is the server instance you set up on Google App Engine for hosting the app for testing purposes.</p>
+        </blockquote>
+        <p>For most cases, you do not need a staging server as the dev server has covered almost all of the application's functionality.
+          If you need to deploy your application to a staging server, refer to <a href="https://github.com/TEAMMATES/teammates-ops/blob/master/platform-guide.md#deploying-to-a-staging-server">this guide</a>.</p>
+        <h2 id="running-client-scripts">Running client scripts<a class="fa fa-anchor" href="#running-client-scripts"></a></h2>
+        <blockquote>
+          <p>Client scripts are scripts that remotely manipulate data on GAE via its Remote API. They are run as standard Java applications.</p>
+        </blockquote>
+        <p>Most of developers may not need to write and/or run client scripts but if you are to do so, take note of the following:</p>
+        <ul>
+          <li>If you are to run a script in a production environment, there are additional steps to follow. Refer to <a href="https://github.com/TEAMMATES/teammates-ops/blob/master/platform-guide.md#running-client-scripts">this guide</a>.</li>
+          <li>It is not encouraged to compile and run any script via command line; use any of the supported IDEs to significantly ease this task.</li>
+        </ul>
+        <h2 id="config-points">Config points<a class="fa fa-anchor" href="#config-points"></a></h2>
+        <p>There are several files used to configure various aspects of the system.</p>
+        <p><strong>Main</strong>: These vary from developer to developer and are subjected to frequent changes.</p>
+        <ul>
+          <li><code>build.properties</code>: Contains the general purpose configuration values to be used by the web API.</li>
+          <li><code>config.ts</code>: Contains the general purpose configuration values to be used by the web application.</li>
+          <li><code>test.properties</code>: Contains the configuration values for the test driver.
+            <ul>
+              <li>There are two separate <code>test.properties</code>; one for component tests and one for E2E tests.</li>
+            </ul>
+          </li>
+          <li><code>client.properties</code>: Contains some configuration values used in client scripts.</li>
+          <li><code>appengine-web.xml</code>: Contains the configuration for deploying the application on GAE.</li>
+        </ul>
+        <p><strong>Tasks</strong>: These do not concern the application directly, but rather the development process.</p>
+        <ul>
+          <li><code>build.gradle</code>: Contains the back-end third-party dependencies specification, as well as configurations for automated tasks/routines to be run via Gradle.</li>
+          <li><code>gradle.properties</code>, <code>gradle-wrapper.properties</code>: Contains the Gradle and Gradle wrapper configuration.</li>
+          <li><code>package.json</code>: Contains the front-end third-party dependencies specification, as well as configurations for automated tasks/routines to be run via NPM.</li>
+          <li><code>angular.json</code>: Contains the Angular application configuration.</li>
+          <li><code>.travis.yml</code>: Contains the Travis CI job configuration.</li>
+          <li><code>appveyor.yml</code>: Contains the AppVeyor CI job configuration.</li>
+        </ul>
+        <p><strong>Static Analysis</strong>: These are used to maintain code quality and measure code coverage. See <a href="/teammates/static-analysis.md">Static Analysis</a>.</p>
+        <ul>
+          <li><code>static-analysis/*</code>: Contains most of the configuration files for all the different static analysis tools.</li>
+          <li><code>.stylelintrc</code>: Equivalent to <code>static-analysis/teammates-stylelint.yml</code>, currently only used for Stylelint integration in IntelliJ.</li>
+        </ul>
+        <p><strong>Other</strong>: These are rarely, if ever will be, subjected to changes.</p>
+        <ul>
+          <li><code>logging.properties</code>: Contains the java.util.logging configuration.</li>
+          <li><code>web.xml</code>: Contains the web server configuration, e.g servlets to run, mapping from URLs to servlets, security constraints, etc.</li>
+          <li><code>cron.xml</code>: Contains the cron jobs specification.</li>
+          <li><code>queue.xml</code>: Contains the task queues configuration.</li>
+          <li><code>datastore-indexes.xml</code>: Contains the Datastore indexes configuration.</li>
+        </ul>
+      </div>
+    </div>
+    <footer>
+      <div class="text-center">
+        This is a dynamic height footer that supports markdown <span>😄</span>!
+      </div>
+
+      <div class="text-center">
+        <small>[Generated by <a href="https://markbind.org/">MarkBind 2.3.0</a> on Tue, 23 Apr 2019 07:31:51 GMT]</small></div>
+    </footer>
+  </div>
+</body>
+<script src="markbind/js/vue.min.js"></script>
+<script src="markbind/js/vue-strap.min.js"></script>
+<script src="markbind/js/bootstrap-utility.min.js"></script>
+<script src="markbind/js/polyfill.min.js"></script>
+<script src="markbind/js/bootstrap-vue.min.js"></script>
+<script>
+  const baseUrl = '/teammates'
+  const enableSearch = true
+</script>
+<script src="markbind/js/setup.js"></script>
+<script src="markbind/layouts/default/scripts.js"></script>
+
+</html>

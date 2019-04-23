@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="MarkBind 2.3.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link rel="stylesheet" href="markbind/css/bootstrap.min.css">
+  <link rel="stylesheet" href="markbind/css/bootstrap-vue.min.css">
+  <link rel="stylesheet" href="markbind/fontawesome/css/all.min.css">
+  <link rel="stylesheet" href="markbind/glyphicons/css/bootstrap-glyphicons.min.css">
+  <link rel="stylesheet" href="markbind/css/github.min.css">
+  <link rel="stylesheet" href="markbind/css/markbind.css">
+  <link rel="stylesheet" href="markbind/layouts/default/styles.css">
+  <link rel="stylesheet" href="markbind/css/site-nav.css">
+
+
+
+</head>
+
+<body>
+  <div id="app">
+    <header>
+      <navbar placement="top" type="inverse">
+        <a slot="brand" href="/teammates/index.html" title="Home" class="navbar-brand"><i class="far fa-file-image"></i></a>
+        <li><a href="/teammates/index.html" class="nav-link">HOME</a></li>
+        <li><a href="/teammates/about.html" class="nav-link">ABOUT</a></li>
+        <li slot="right">
+          <form class="navbar-form">
+            <searchbar :data="searchData" placeholder="Search" :on-hit="searchCallback" menu-align-right></searchbar>
+          </form>
+        </li>
+      </navbar>
+    </header>
+    <div id="flex-body">
+      <nav id="site-nav" class="navbar navbar-light bg-transparent">
+        <div class="position-sticky position-top site-nav-spacer viewport-height-90 scrollable slim-scroll">
+          <ul class="px-0 site-nav-list">
+            <li class="mt-2"><a href="/teammates/index.html" class="site-nav__a">Index</a></li>
+            <li class="mt-2"><a href="/teammates/CONTRIBUTING.html" class="site-nav__a">CONTRIBUTING</a></li>
+            <li class="mt-2"><a href="/teammates/README.html" class="site-nav__a">README</a></li>
+            <li class="mt-2"><a href="/teammates/best-practices/coding.html" class="site-nav__a">Coding</a></li>
+            <li class="mt-2"><a href="/teammates/best-practices/data-migration.html" class="site-nav__a">Data Migration</a></li>
+            <li class="mt-2"><a href="/teammates/best-practices/testing.html" class="site-nav__a">Testing</a></li>
+            <li class="mt-2"><a href="/teammates/best-practices/ui-design.html" class="site-nav__a">Ui Design</a></li>
+            <li class="mt-2"><a href="/teammates/captcha.html" class="site-nav__a">Captcha</a></li>
+            <li class="mt-2"><a href="/teammates/design.html" class="site-nav__a">Design</a></li>
+            <li class="mt-2"><a href="/teammates/development.html" class="site-nav__a">Development</a></li>
+            <li class="mt-2"><a href="/teammates/emails.html" class="site-nav__a">Emails</a></li>
+            <li class="mt-2"><a href="/teammates/glossary.html" class="site-nav__a">Glossary</a></li>
+            <li class="mt-2"><a href="/teammates/ide-setup.html" class="site-nav__a">Ide Setup</a></li>
+            <li class="mt-2"><a href="/teammates/issues.html" class="site-nav__a">Issues</a></li>
+            <li class="mt-2"><a href="/teammates/overview.html" class="site-nav__a">Overview</a></li>
+            <li class="mt-2"><a href="/teammates/performance-testing.html" class="site-nav__a">Performance Testing</a></li>
+            <li class="mt-2"><a href="/teammates/process.html" class="site-nav__a">Process</a></li>
+            <li class="mt-2"><a href="/teammates/setting-up.html" class="site-nav__a">Setting Up</a></li>
+            <li class="mt-2"><a href="/teammates/snapshot-testing.html" class="site-nav__a current">Snapshot Testing</a></li>
+            <li class="mt-2"><a href="/teammates/static-analysis.html" class="site-nav__a">Static Analysis</a></li>
+            <li class="mt-2"><a href="/teammates/troubleshooting-guide.html" class="site-nav__a">Troubleshooting Guide</a></li>
+          </ul>
+        </div>
+      </nav>
+      <div id="content-wrapper">
+        <h1 id="snapshot-testing">Snapshot Testing<a class="fa fa-anchor" href="#snapshot-testing"></a></h1>
+        <h2 id="what-is-snapshot-testing">What is Snapshot Testing?<a class="fa fa-anchor" href="#what-is-snapshot-testing"></a></h2>
+        <p>Snapshot testing is an extension of usual expected-vs-actual assertion where the following conditions apply:</p>
+        <ol>
+          <li>The expected object (&quot;snapshot&quot; afterwards) is too large to be contained in a few lines of code (e.g. a web page HTML content)</li>
+          <li>The snapshot should be tolerant to some degree of data variation (e.g. date and time of test execution)</li>
+          <li>(Optional) There is an automated way to update the snapshot based on the state of the actual object at any point of time</li>
+        </ol>
+        <p>In the case of TEAMMATES, snapshot testing is useful for the following comparisons:</p>
+        <ol>
+          <li>Expected web page content/DOM structure vs actual rendered web page</li>
+          <li>Expected email content vs actual email generated by the system</li>
+          <li>Expected CSV content vs actual CSV generated by the system</li>
+        </ol>
+        <h2 id="how-does-snapshot-testing-work">How does Snapshot Testing work?<a class="fa fa-anchor" href="#how-does-snapshot-testing-work"></a></h2>
+        <p>Snapshots testing can run in two modes, namely, verification mode (default) and auto-update mode.</p>
+        <p>In verification mode, snapshot testing is essentially the same as a normal expected-vs-actual assertions, where the actual object is compared against the snapshot.</p>
+        <p>Auto-update mode is the flagship feature of snapshot testing. Essentially, this <em>reverses</em> the process of testing, i.e. using the <em>actual</em> generated object to overwrite the snapshot provided in the test.
+          To remove redundancy, even if auto-update mode is enabled, this overwriting procedure only happens when a test fails during the test run.</p>
+        <p>For such testing method to be effective, before the changes are committed, a <em>manual</em> (by the developer) verification to ensure only the intended changes have occurred is mandatory.</p>
+        <h2 id="how-do-we-use-snapshot-testing">How do we use Snapshot Testing?<a class="fa fa-anchor" href="#how-do-we-use-snapshot-testing"></a></h2>
+        <p>For the web page comparison, the tests are done in the front-end using Jest. <a href="https://jestjs.io/docs/en/snapshot-testing">Jest has native support for snapshot testing (in fact, that is where the name is obtained from!)</a>. Auto-update mode is activated by pressing <code>u</code> when running Jest under watch mode.</p>
+        <p>For email and CSV content generation, the tests are done in the back-end. Auto-update mode is activated by setting the value of <code>test.snapshot.update</code> to <code>true</code> in <code>test.properties</code>.</p>
+        <h2 id="when-do-we-use-snapshot-testing">When do we use Snapshot Testing?<a class="fa fa-anchor" href="#when-do-we-use-snapshot-testing"></a></h2>
+        <p>Snapshot testing is typically used in the following two situations:</p>
+        <ol>
+          <li>To create a new source file for a (new) HTML comparison test, email content test, or CSV file content test.</li>
+          <li>To update existing source files to reflect intended changes to the UI of the web pages, the email content, or the CSV file content.</li>
+        </ol>
+        <p>The following example describes the behaviour of snapshot testing and how it can be used in practice. Let us consider the case where the following line of test code is executed:</p>
+        <pre><code class="hljs ts">expect(fixture).toMatchSnapshot();
+</code></pre>
+        <p>Here are three possible situations and the corresponding behaviours of snapshot testing when the test is executed with auto-update mode enabled:</p>
+        <ol>
+          <li>
+            <p>If the snapshot exists and has the correct content, no updates to the source file will be observed.</p>
+          </li>
+          <li>
+            <p>If the snapshot exists but has the wrong content, it will be updated with the correct content. Subsequently, the test case will pass subsequent test runs with/without auto-update mode enabled.</p>
+          </li>
+          <li>
+            <p>If the snapshot does not exist, it will be created with the given name (in Jest it is auto-generated) AND with the correct content. Subsequently, the test case will pass subsequent test runs with/without auto-update mode enabled.</p>
+          </li>
+        </ol>
+        <p>The same idea applies to email content test:</p>
+        <pre><code class="hljs java">EmailChecker.verifyEmailContent(email, recipient, subject, <span class="hljs-string">"/studentCourseJoinEmail.html"</span>);
+</code></pre>
+        <p>And to CSV content test:</p>
+        <pre><code class="hljs java">CsvChecker.verifyCsvContent(csvContent, <span class="hljs-string">"/feedbackSessionResults.csv"</span>);
+</code></pre>
+        <h2 id="when-do-we-not-use-snapshot-testing">When do we NOT use Snapshot Testing?<a class="fa fa-anchor" href="#when-do-we-not-use-snapshot-testing"></a></h2>
+        <p>Snapshot testing is useful for regression testing, e.g. if a change to front-end logic caused the rendered HTML to change, snapshot testing will reflect those changes and it can be checked whether those changes are intended or not.</p>
+        <p>However, snapshot testing should NOT be used to check how a rendered HTML looks like before/during/after interactions, e.g.:</p>
+        <ol>
+          <li>Take one snapshot at the initial phase</li>
+          <li>Perform a 'click' on a selected component of the page</li>
+          <li>Take another snapshot afterwards</li>
+        </ol>
+        <p>Such (mis-)usage of snapshot testing will erode the value of test as the difference between the two snapshots cannot be traced.</p>
+        <p>In such a case, normal assertions should be used, e.g. by checking the component's internal data before and after the 'click'.</p>
+        <h2 id="best-practices">Best Practices<a class="fa fa-anchor" href="#best-practices"></a></h2>
+        <ol>
+          <li>Snapshot testing complements but does NOT replace unit tests.</li>
+          <li>Remember to disable the auto-update mode once the necessary changes have been made, before committing the changes.</li>
+          <li>Confirm that all the changes are EXPECTED.</li>
+          <li>After all the necessary changes have been made, run the test suites once without auto-update mode enabled to ensure that the tests pass.</li>
+        </ol>
+        <h2 id="final-notes">Final Notes<a class="fa fa-anchor" href="#final-notes"></a></h2>
+        <p>Do NOT create or modify the snapshot objects manually. Use auto-update mode even for seemingly trivial changes. The generated snapshot may not reflect the actual object identically. Some modifications have been made to achieve cross-compatibility (e.g. white space standardization).</p>
+        <p>Running any snapshot test with auto-update mode enabled can lead to false positive results since comparison failures, if any, are suppressed. This further underscores the need to run the test suite WITHOUT auto-update mode enabled to truly test the system.</p>
+        <p>In general, only the lines that are modified should be changed. However, since there are some forms of standardization such as white spacing, sometimes multiple (seemingly unrelated) lines may be affected due to changes in the indentation, and as such it is not a cause for concern. An example of this is shown below:</p>
+        <pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">img</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</code></pre>
+        <p>being changed to</p>
+        <pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">img</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</code></pre>
+        <p>Happy Testing!</p>
+      </div>
+    </div>
+    <footer>
+      <div class="text-center">
+        This is a dynamic height footer that supports markdown <span>😄</span>!
+      </div>
+
+      <div class="text-center">
+        <small>[Generated by <a href="https://markbind.org/">MarkBind 2.3.0</a> on Tue, 23 Apr 2019 07:31:51 GMT]</small></div>
+    </footer>
+  </div>
+</body>
+<script src="markbind/js/vue.min.js"></script>
+<script src="markbind/js/vue-strap.min.js"></script>
+<script src="markbind/js/bootstrap-utility.min.js"></script>
+<script src="markbind/js/polyfill.min.js"></script>
+<script src="markbind/js/bootstrap-vue.min.js"></script>
+<script>
+  const baseUrl = '/teammates'
+  const enableSearch = true
+</script>
+<script src="markbind/js/setup.js"></script>
+<script src="markbind/layouts/default/scripts.js"></script>
+
+</html>

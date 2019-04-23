@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="MarkBind 2.3.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link rel="stylesheet" href="markbind/css/bootstrap.min.css">
+  <link rel="stylesheet" href="markbind/css/bootstrap-vue.min.css">
+  <link rel="stylesheet" href="markbind/fontawesome/css/all.min.css">
+  <link rel="stylesheet" href="markbind/glyphicons/css/bootstrap-glyphicons.min.css">
+  <link rel="stylesheet" href="markbind/css/github.min.css">
+  <link rel="stylesheet" href="markbind/css/markbind.css">
+  <link rel="stylesheet" href="markbind/layouts/default/styles.css">
+  <link rel="stylesheet" href="markbind/css/site-nav.css">
+
+
+
+</head>
+
+<body>
+  <div id="app">
+    <header>
+      <navbar placement="top" type="inverse">
+        <a slot="brand" href="/teammates/index.html" title="Home" class="navbar-brand"><i class="far fa-file-image"></i></a>
+        <li><a href="/teammates/index.html" class="nav-link">HOME</a></li>
+        <li><a href="/teammates/about.html" class="nav-link">ABOUT</a></li>
+        <li slot="right">
+          <form class="navbar-form">
+            <searchbar :data="searchData" placeholder="Search" :on-hit="searchCallback" menu-align-right></searchbar>
+          </form>
+        </li>
+      </navbar>
+    </header>
+    <div id="flex-body">
+      <nav id="site-nav" class="navbar navbar-light bg-transparent">
+        <div class="position-sticky position-top site-nav-spacer viewport-height-90 scrollable slim-scroll">
+          <ul class="px-0 site-nav-list">
+            <li class="mt-2"><a href="/teammates/index.html" class="site-nav__a">Index</a></li>
+            <li class="mt-2"><a href="/teammates/CONTRIBUTING.html" class="site-nav__a current">CONTRIBUTING</a></li>
+            <li class="mt-2"><a href="/teammates/README.html" class="site-nav__a">README</a></li>
+            <li class="mt-2"><a href="/teammates/best-practices/coding.html" class="site-nav__a">Coding</a></li>
+            <li class="mt-2"><a href="/teammates/best-practices/data-migration.html" class="site-nav__a">Data Migration</a></li>
+            <li class="mt-2"><a href="/teammates/best-practices/testing.html" class="site-nav__a">Testing</a></li>
+            <li class="mt-2"><a href="/teammates/best-practices/ui-design.html" class="site-nav__a">Ui Design</a></li>
+            <li class="mt-2"><a href="/teammates/captcha.html" class="site-nav__a">Captcha</a></li>
+            <li class="mt-2"><a href="/teammates/design.html" class="site-nav__a">Design</a></li>
+            <li class="mt-2"><a href="/teammates/development.html" class="site-nav__a">Development</a></li>
+            <li class="mt-2"><a href="/teammates/emails.html" class="site-nav__a">Emails</a></li>
+            <li class="mt-2"><a href="/teammates/glossary.html" class="site-nav__a">Glossary</a></li>
+            <li class="mt-2"><a href="/teammates/ide-setup.html" class="site-nav__a">Ide Setup</a></li>
+            <li class="mt-2"><a href="/teammates/issues.html" class="site-nav__a">Issues</a></li>
+            <li class="mt-2"><a href="/teammates/overview.html" class="site-nav__a">Overview</a></li>
+            <li class="mt-2"><a href="/teammates/performance-testing.html" class="site-nav__a">Performance Testing</a></li>
+            <li class="mt-2"><a href="/teammates/process.html" class="site-nav__a">Process</a></li>
+            <li class="mt-2"><a href="/teammates/setting-up.html" class="site-nav__a">Setting Up</a></li>
+            <li class="mt-2"><a href="/teammates/snapshot-testing.html" class="site-nav__a">Snapshot Testing</a></li>
+            <li class="mt-2"><a href="/teammates/static-analysis.html" class="site-nav__a">Static Analysis</a></li>
+            <li class="mt-2"><a href="/teammates/troubleshooting-guide.html" class="site-nav__a">Troubleshooting Guide</a></li>
+          </ul>
+        </div>
+      </nav>
+      <div id="content-wrapper">
+        <h1 id="contributing-to-teammates">Contributing to TEAMMATES<a class="fa fa-anchor" href="#contributing-to-teammates"></a></h1>
+        <p>Thanks for taking your time to contribute to TEAMMATES!</p>
+        <p>We welcome contributions from anyone, in particular, students (see <a href="https://teammatesv4.appspot.com/about.jsp">here</a> for the list of our contributors). One of the main objectives of TEAMMATES is to help students get experience in a OSS production environment. Here are some information that might be useful to would-be contributors.</p>
+        <ul>
+          <li><a href="#getting-started">Getting started</a>
+            <ul>
+              <li><a href="#know-the-productproject">Know the product/project</a></li>
+              <li><a href="#code-of-conduct">Code of Conduct</a></li>
+            </ul>
+          </li>
+          <li><a href="#how-can-i-contribute">How can I contribute?</a>
+            <ul>
+              <li><a href="#submitting-an-issue">Submitting an issue</a></li>
+              <li><a href="#manual-testing">Manual testing</a></li>
+              <li><a href="#submitting-a-pull-request">Submitting a pull request</a></li>
+            </ul>
+          </li>
+          <li><a href="#contributor-orientation-guide">Contributor orientation guide</a>
+            <ul>
+              <li><a href="#knowledge-required">Knowledge required</a></li>
+              <li><a href="#orientation-task-list">Orientation task list</a></li>
+            </ul>
+          </li>
+          <li><a href="#other-resources">Other resources</a></li>
+        </ul>
+        <h2 id="getting-started">Getting started<a class="fa fa-anchor" href="#getting-started"></a></h2>
+        <h3 id="know-the-product-project">Know the product/project<a class="fa fa-anchor" href="#know-the-product-project"></a></h3>
+        <p>Understand what TEAMMATES is about, both as a product (users' point of view) and a project (developers' point of view).</p>
+        <ul>
+          <li><a href="https://teammatesv4.appspot.com">Product intro page</a> shown to potential users</li>
+          <li><a href="https://teammatesv4.appspot.com/features.jsp">Features overview</a></li>
+          <li><a href="/teammates/overview.md">Project vision, challenges, and principles</a></li>
+        </ul>
+        <h3 id="code-of-conduct">Code of Conduct<a class="fa fa-anchor" href="#code-of-conduct"></a></h3>
+        <p>By participating in this project, you agree to uphold the <a href=".github/CODE_OF_CONDUCT.md">TEAMMATES Code of Conduct</a>, which is adopted from <a href="https://www.contributor-covenant.org/">Contributor Covenant Code of Conduct</a>.</p>
+        <h2 id="how-can-i-contribute">How can I contribute?<a class="fa fa-anchor" href="#how-can-i-contribute"></a></h2>
+        <h3 id="submitting-an-issue">Submitting an issue<a class="fa fa-anchor" href="#submitting-an-issue"></a></h3>
+        <p>We use the <a href="https://github.com/TEAMMATES/teammates/issues">issue tracker</a> to contain bug reports and feature/enhancement requests.
+          Before submitting a new issue, search the issue tracker to ensure that there is no similar open issue.</p>
+        <p>If you are certain that you are reporting a new issue, <a href="https://github.com/TEAMMATES/teammates/issues/new">open a new issue</a> using the templates provided.</p>
+        <h3 id="manual-testing">Manual testing<a class="fa fa-anchor" href="#manual-testing"></a></h3>
+        <p>We welcome anyone manually testing our product and reporting bugs or suggestions for enhancements in the issue tracker.</p>
+        <p>If you want to undertake such a role without actually contributing code, <a href="https://teammatesv4.appspot.com/request.jsp">get an instructor account from TEAMMATES</a>.
+          Remember to mention the purpose of your request under &quot;Any other comments/queries&quot;.</p>
+        <h3 id="submitting-a-pull-request">Submitting a pull request<a class="fa fa-anchor" href="#submitting-a-pull-request"></a></h3>
+        <p>We accept patches/fixes in form of pull requests (PRs). Make sure that the pull request addresses an open issue in the issue tracker.
+          Remember to follow the <a href="/teammates/process.md">TEAMMATES Development Process</a>.</p>
+        <p>By submitting a PR, you agree to allow the project team to license your work under the terms of the <a href="LICENSE">GNU GPL v2 License</a>.</p>
+        <p>If this is your first time contributing to TEAMMATES, you may want to read up the contributor orientation guide lined out in the next section.</p>
+        <h2 id="contributor-orientation-guide">Contributor orientation guide<a class="fa fa-anchor" href="#contributor-orientation-guide"></a></h2>
+        <p>Contributing to an OSS project requires you to figure out things on your own when you can, and seek help from the right resource (Google, StackOverflow, troubleshooting guides, issue tracker, etc.) when you cannot. To become a TEAMMATES contributor, you need to start honing those skills. To help you with that, we have created a sequence of tasks you can try to complete. Try to complete as many of them as you can, in the order they are listed.</p>
+        <p>Of course we are happy to guide you if you encounter any difficulties when doing these tasks; we have provided a <a href="/teammates/troubleshooting-guide.md">troubleshooting guide</a> for some commonly faced problems. Failing that, you may post a help request in our <a href="https://github.com/TEAMMATES/teammates/issues">issue tracker</a>.</p>
+        <blockquote>
+          <ul>
+            <li>The task descriptions are brief by intention. We want you to try to figure out how to do those things by yourself.</li>
+            <li>While the dev team members will be glad to answer your questions, you will not make a good impression if you ask questions which are already answered in the mentioned resources.</li>
+          </ul>
+        </blockquote>
+        <h3 id="knowledge-required">Knowledge required<a class="fa fa-anchor" href="#knowledge-required"></a></h3>
+        <p>Although TEAMMATES uses many tools and technologies, you need not know all of them before you can contribute. The diagram below shows which technologies you need to learn to contribute in different roles.</p>
+        <p><a href="/teammates/images/RolesAndTechnologies.png" target="_self"><img src="/teammates/images/RolesAndTechnologies.png" alt class="img-fluid"></a></p>
+        <p>Note that these roles are not fixed or formally assigned; it is simply for guidance only.</p>
+        <p>Roles:</p>
+        <ul>
+          <li><strong>Web page developer</strong>: Works on static web pages, such as those used in the TEAMMATES product web site.</li>
+          <li><strong>Front-end developer</strong>: Works on the front-end of the app, i.e. the dynamically-generated user interface.</li>
+          <li><strong>Test developer</strong>: Works on automating system tests.</li>
+          <li><strong>Back-end developer</strong>: Works on the back-end logic of the app, including data storage.</li>
+          <li><strong>DevOps developer</strong>: Works on automations (CI, static analysis, scripting) and operations (logging, monitoring, troubleshooting).</li>
+        </ul>
+        <h3 id="orientation-task-list">Orientation task list<a class="fa fa-anchor" href="#orientation-task-list"></a></h3>
+        <h4 id="phase-a-set-up-locally">Phase A: Set up locally</h4>
+        <ol>
+          <li><a href="/teammates/setting-up.md">Set up TEAMMATES development environment on your computer.</a><br>
+            <strong>Important: Follow instructions to the letter. Install the specified versions of the tool stack, not the latest versions.</strong></li>
+          <li>Get <em>dev green</em> (more info in <a href="/teammates/development.md"><em>Development Guidelines</em> document</a>).
+            It is OK to proceed to the next phase if you have fewer than 5 failing test cases.</li>
+        </ol>
+        <h4 id="phase-b-learn">Phase B: Learn</h4>
+        <p>In order to contribute effectively, you are advised to learn how to do the various development routines lined out in <a href="/teammates/development.md">the <em>Development Guidelines</em> document</a>.
+          Try your best to be familiar with at least building and testing the application in your local development environment.</p>
+        <h4 id="phase-c-start-contributing">Phase C: Start contributing</h4>
+        <p>When you are ready for a real contribution, you are advised to start with an issue labelled <a href="https://github.com/TEAMMATES/teammates/issues?q=is:issue+is:open+label:d.FirstTimers">d.FirstTimers</a> (but do not do more than one of those), then move on to other issues labelled <a href="https://github.com/TEAMMATES/teammates/issues?q=is:issue+is:open+label:d.Contributors">d.Contributors</a>.
+          Steps for fixing an issue are lined out in the <a href="/teammates/process.md">process document</a>.</p>
+        <blockquote>
+          <p>In the event that you cannot find a <code>d.FirstTimers</code>-labelled issue, you can start with a <code>d.Contributors</code>-labelled issue.
+            You can consult the <code>e.*</code> label, if it is present, to estimate the difficulty. Lower number generally means less amount of work required.</p>
+        </blockquote>
+        <h4 id="important">Important</h4>
+        <p>Fixing an issue quickly is not the important thing. In fact, issues given to new contributors are the ones we already know how to fix.
+          We are more interested to see how you go about fixing the issue. We want to know whether you are systematic and detail-oriented.</p>
+        <p>Take your time to learn and follow the workflow to the letter. Do not skip any steps because you think that step is &quot;not important&quot;. We are more impressed when you finish an issue in fewer attempts than when you finish it in a shorter time but take many attempts because you were not meticulous enough along the way.</p>
+        <h2 id="other-resources">Other resources<a class="fa fa-anchor" href="#other-resources"></a></h2>
+        <ul>
+          <li><a href=".github/SUPPORT.md">Support request</a></li>
+          <li><a href="/teammates/README.md">Comprehensive directory of resources, including style guides</a></li>
+        </ul>
+      </div>
+    </div>
+    <footer>
+      <div class="text-center">
+        This is a dynamic height footer that supports markdown <span>😄</span>!
+      </div>
+
+      <div class="text-center">
+        <small>[Generated by <a href="https://markbind.org/">MarkBind 2.3.0</a> on Tue, 23 Apr 2019 07:31:51 GMT]</small></div>
+    </footer>
+  </div>
+</body>
+<script src="markbind/js/vue.min.js"></script>
+<script src="markbind/js/vue-strap.min.js"></script>
+<script src="markbind/js/bootstrap-utility.min.js"></script>
+<script src="markbind/js/polyfill.min.js"></script>
+<script src="markbind/js/bootstrap-vue.min.js"></script>
+<script>
+  const baseUrl = '/teammates'
+  const enableSearch = true
+</script>
+<script src="markbind/js/setup.js"></script>
+<script src="markbind/layouts/default/scripts.js"></script>
+
+</html>

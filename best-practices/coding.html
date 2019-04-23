@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="MarkBind 2.3.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link rel="stylesheet" href="../markbind/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../markbind/css/bootstrap-vue.min.css">
+  <link rel="stylesheet" href="../markbind/fontawesome/css/all.min.css">
+  <link rel="stylesheet" href="../markbind/glyphicons/css/bootstrap-glyphicons.min.css">
+  <link rel="stylesheet" href="../markbind/css/github.min.css">
+  <link rel="stylesheet" href="../markbind/css/markbind.css">
+  <link rel="stylesheet" href="../markbind/layouts/default/styles.css">
+  <link rel="stylesheet" href="../markbind/css/site-nav.css">
+
+
+
+</head>
+
+<body>
+  <div id="app">
+    <header>
+      <navbar placement="top" type="inverse">
+        <a slot="brand" href="/teammates/index.html" title="Home" class="navbar-brand"><i class="far fa-file-image"></i></a>
+        <li><a href="/teammates/index.html" class="nav-link">HOME</a></li>
+        <li><a href="/teammates/about.html" class="nav-link">ABOUT</a></li>
+        <li slot="right">
+          <form class="navbar-form">
+            <searchbar :data="searchData" placeholder="Search" :on-hit="searchCallback" menu-align-right></searchbar>
+          </form>
+        </li>
+      </navbar>
+    </header>
+    <div id="flex-body">
+      <nav id="site-nav" class="navbar navbar-light bg-transparent">
+        <div class="position-sticky position-top site-nav-spacer viewport-height-90 scrollable slim-scroll">
+          <ul class="px-0 site-nav-list">
+            <li class="mt-2"><a href="/teammates/index.html" class="site-nav__a">Index</a></li>
+            <li class="mt-2"><a href="/teammates/CONTRIBUTING.html" class="site-nav__a">CONTRIBUTING</a></li>
+            <li class="mt-2"><a href="/teammates/README.html" class="site-nav__a">README</a></li>
+            <li class="mt-2"><a href="/teammates/best-practices/coding.html" class="site-nav__a current">Coding</a></li>
+            <li class="mt-2"><a href="/teammates/best-practices/data-migration.html" class="site-nav__a">Data Migration</a></li>
+            <li class="mt-2"><a href="/teammates/best-practices/testing.html" class="site-nav__a">Testing</a></li>
+            <li class="mt-2"><a href="/teammates/best-practices/ui-design.html" class="site-nav__a">Ui Design</a></li>
+            <li class="mt-2"><a href="/teammates/captcha.html" class="site-nav__a">Captcha</a></li>
+            <li class="mt-2"><a href="/teammates/design.html" class="site-nav__a">Design</a></li>
+            <li class="mt-2"><a href="/teammates/development.html" class="site-nav__a">Development</a></li>
+            <li class="mt-2"><a href="/teammates/emails.html" class="site-nav__a">Emails</a></li>
+            <li class="mt-2"><a href="/teammates/glossary.html" class="site-nav__a">Glossary</a></li>
+            <li class="mt-2"><a href="/teammates/ide-setup.html" class="site-nav__a">Ide Setup</a></li>
+            <li class="mt-2"><a href="/teammates/issues.html" class="site-nav__a">Issues</a></li>
+            <li class="mt-2"><a href="/teammates/overview.html" class="site-nav__a">Overview</a></li>
+            <li class="mt-2"><a href="/teammates/performance-testing.html" class="site-nav__a">Performance Testing</a></li>
+            <li class="mt-2"><a href="/teammates/process.html" class="site-nav__a">Process</a></li>
+            <li class="mt-2"><a href="/teammates/setting-up.html" class="site-nav__a">Setting Up</a></li>
+            <li class="mt-2"><a href="/teammates/snapshot-testing.html" class="site-nav__a">Snapshot Testing</a></li>
+            <li class="mt-2"><a href="/teammates/static-analysis.html" class="site-nav__a">Static Analysis</a></li>
+            <li class="mt-2"><a href="/teammates/troubleshooting-guide.html" class="site-nav__a">Troubleshooting Guide</a></li>
+          </ul>
+        </div>
+      </nav>
+      <div id="content-wrapper">
+        <h1 id="coding-best-practices">Coding Best Practices<a class="fa fa-anchor" href="#coding-best-practices"></a></h1>
+        <h2 id="quality">Quality<a class="fa fa-anchor" href="#quality"></a></h2>
+        <p>Maintainability is our top priority. Less is more. Prefer simple over complex.</p>
+        <h2 id="style">Style<a class="fa fa-anchor" href="#style"></a></h2>
+        <p>The goal is to make the code as if it was written by one person.</p>
+        <ul>
+          <li>Prefer standard way of doing something over creating special cases.</li>
+          <li>Try to be consistent with the existing code in naming, layout etc.</li>
+          <li>Follow coding style guides as much as possible. Most of the static analysis tools will enforce those styles, but not all.</li>
+        </ul>
+        <h2 id="refactoring">Refactoring<a class="fa fa-anchor" href="#refactoring"></a></h2>
+        <ul>
+          <li>Follow the <a href="https://medium.com/@biratkirat/step-8-the-boy-scout-rule-robert-c-martin-uncle-bob-9ac839778385">boy scout rule</a> (i.e. always leave the campground cleaner than you found it). Whenever you touch some code, e.g. to fix a bug, try to do some clean up of that code as well.
+            But do the extra refactoring as a separate issue. One issue should fix only one thing.</li>
+        </ul>
+        <h2 id="code-comments">Code Comments<a class="fa fa-anchor" href="#code-comments"></a></h2>
+        <ul>
+          <li>Use comments ONLY when the code is not-self explanatory. Avoid redundant comments. Even comment elements such as <code>@return</code> and <code>@param</code> can be omitted if they do not add value.</li>
+          <li>Comments should be well-written. They should not be written as 'note to self' of the developer, but as explanations to help the reader.</li>
+          <li>Write header comments for all classes.</li>
+          <li>Write header comments for all non-trivial public methods.</li>
+        </ul>
+        <h2 id="user-visible-text">User-visible text<a class="fa fa-anchor" href="#user-visible-text"></a></h2>
+        <p>Make sure the terminology used is understandable to users.</p>
+        <h2 id="issue-tracking">Issue tracking<a class="fa fa-anchor" href="#issue-tracking"></a></h2>
+        <ul>
+          <li>
+            <p>Everything you do for the project, even non-coding tasks, should be recorded in the issue tracker.</p>
+          </li>
+          <li>
+            <p>Use a descriptive issue name with a well-defined scope. <code>Improve DevMan</code> is not good because the scope is not clear (improve in what way?). <code>Add issue name convention to the DevMan</code> is a better name.</p>
+          </li>
+          <li>
+            <p>All ongoing work should be reflected in the tracker correctly. The issue tracker should clearly show which issues are being handled at the moment, which are ready for review, etc. Use status labels (<code>s.*</code>) appropriately.</p>
+          </li>
+          <li>
+            <p>Resist the urge to do more than one task under one issue/PR unless they are tightly coupled and one cannot be done without the other. Specifically, do not do refactorings unrelated to the fix. Instead, create a new issue and do as a separate PR.</p>
+            <p>Reason: Occasionally we have to 'undo' fixes done previously, e.g. when we discover latent regressions introduced by that fix. Therefore, we should be able to undo any specific fix by reverting the merge commit of the relevant branch. If one branch merge brings in multiple fixes, we cannot undo one without the other.</p>
+          </li>
+          <li>
+            <p>Small issues are better than big ones. Big issues take longer to finish and have a higher risk of merge conflicts.</p>
+          </li>
+        </ul>
+        <h2 id="revision-control">Revision control<a class="fa fa-anchor" href="#revision-control"></a></h2>
+        <p>Go through your change set before pushing it. Ensure all changes are as intended.</p>
+        <h2 id="security">Security<a class="fa fa-anchor" href="#security"></a></h2>
+        <ul>
+          <li>When coding the UI (web pages), any user-entered value (e.g. course name) should be sanitized before displaying it back. This is to minimize cross-site scripting.</li>
+        </ul>
+      </div>
+    </div>
+    <footer>
+      <div class="text-center">
+        This is a dynamic height footer that supports markdown <span>😄</span>!
+      </div>
+
+      <div class="text-center">
+        <small>[Generated by <a href="https://markbind.org/">MarkBind 2.3.0</a> on Tue, 23 Apr 2019 07:31:51 GMT]</small></div>
+    </footer>
+  </div>
+</body>
+<script src="../markbind/js/vue.min.js"></script>
+<script src="../markbind/js/vue-strap.min.js"></script>
+<script src="../markbind/js/bootstrap-utility.min.js"></script>
+<script src="../markbind/js/polyfill.min.js"></script>
+<script src="../markbind/js/bootstrap-vue.min.js"></script>
+<script>
+  const baseUrl = '/teammates'
+  const enableSearch = true
+</script>
+<script src="../markbind/js/setup.js"></script>
+<script src="../markbind/layouts/default/scripts.js"></script>
+
+</html>

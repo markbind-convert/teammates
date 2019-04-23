@@ -1,0 +1,304 @@
+{
+  "enableSearch": true,
+  "pages": [
+    {
+      "headings": {
+        "documentation-for-developers": "Documentation For Developers",
+        "main-documents": "Main documents",
+        "supplementary-documents": "Supplementary documents",
+        "how-to-documents": "How-to documents"
+      },
+      "src": "index.md",
+      "title": "Hello World",
+      "layout": "default"
+    },
+    {
+      "headings": {
+        "contributing-to-teammates": "Contributing to TEAMMATES",
+        "getting-started": "Getting started",
+        "know-the-product-project": "Know the product/project",
+        "code-of-conduct": "Code of Conduct",
+        "how-can-i-contribute": "How can I contribute?",
+        "submitting-an-issue": "Submitting an issue",
+        "manual-testing": "Manual testing",
+        "submitting-a-pull-request": "Submitting a pull request",
+        "contributor-orientation-guide": "Contributor orientation guide",
+        "knowledge-required": "Knowledge required",
+        "orientation-task-list": "Orientation task list",
+        "other-resources": "Other resources"
+      },
+      "src": "CONTRIBUTING.md",
+      "title": "",
+      "layout": "default"
+    },
+    {
+      "headings": {
+        "documentation-for-developers": "Documentation For Developers",
+        "main-documents": "Main documents",
+        "supplementary-documents": "Supplementary documents",
+        "how-to-documents": "How-to documents"
+      },
+      "src": "README.md",
+      "title": "",
+      "layout": "default"
+    },
+    {
+      "headings": {
+        "about": "About"
+      },
+      "src": "about.md",
+      "title": "",
+      "layout": "default"
+    },
+    {
+      "headings": {
+        "coding-best-practices": "Coding Best Practices",
+        "quality": "Quality",
+        "style": "Style",
+        "refactoring": "Refactoring",
+        "code-comments": "Code Comments",
+        "user-visible-text": "User-visible text",
+        "issue-tracking": "Issue tracking",
+        "revision-control": "Revision control",
+        "security": "Security"
+      },
+      "src": "best-practices/coding.md",
+      "title": "",
+      "layout": "default"
+    },
+    {
+      "headings": {
+        "data-migration-best-practices": "Data Migration Best Practices",
+        "making-code-work-for-both-schemas": "Making code work for both schemas",
+        "interchangeability-between-consecutive-versions": "Interchangeability between consecutive versions"
+      },
+      "src": "best-practices/data-migration.md",
+      "title": "",
+      "layout": "default"
+    },
+    {
+      "headings": {
+        "testing-best-practices": "Testing Best Practices",
+        "general-guidelines": "General guidelines"
+      },
+      "src": "best-practices/testing.md",
+      "title": "",
+      "layout": "default"
+    },
+    {
+      "headings": {
+        "ui-design-best-practices": "UI Design Best Practices",
+        "be-forgiving-in-processing-input": "Be forgiving in processing input",
+        "be-descriptive": "Be descriptive",
+        "minimize-work-to-be-done-by-the-user": "Minimize work (to be done by the user)",
+        "take-user-point-of-view": "Take user point of view",
+        "be-consistent": "Be consistent"
+      },
+      "src": "best-practices/ui-design.md",
+      "title": "",
+      "layout": "default"
+    },
+    {
+      "headings": {
+        "setting-up-captcha": "Setting up CAPTCHA"
+      },
+      "src": "captcha.md",
+      "title": "",
+      "layout": "default"
+    },
+    {
+      "headings": {
+        "design": "Design",
+        "architecture": "Architecture",
+        "ui-component": "UI Component",
+        "user-invoked-requests": "User-invoked requests",
+        "automated-requests": "Automated requests",
+        "template-method-pattern": "Template Method pattern",
+        "logic-component": "Logic Component",
+        "logic-api": "Logic API",
+        "policies": "Policies",
+        "storage-component": "Storage Component",
+        "storage-api": "Storage API",
+        "policies-2": "Policies",
+        "common-component": "Common Component",
+        "test-driver-component": "Test Driver Component",
+        "e2e-component": "E2E Component",
+        "client-component": "Client Component"
+      },
+      "src": "design.md",
+      "title": "",
+      "layout": "default"
+    },
+    {
+      "headings": {
+        "development-guidelines": "Development Guidelines",
+        "managing-the-dev-server-front-end": "Managing the dev server: front-end",
+        "managing-the-dev-server-back-end": "Managing the dev server: back-end",
+        "with-command-line": "With command line",
+        "with-eclipse": "With Eclipse",
+        "with-intellij": "With IntelliJ",
+        "building-front-end-files": "Building front-end files",
+        "logging-in-to-a-teammates-instance": "Logging in to a TEAMMATES instance",
+        "as-administrator": "As administrator",
+        "as-instructor": "As instructor",
+        "as-student": "As student",
+        "logging-in-without-ui": "Logging in without UI",
+        "testing": "Testing",
+        "configuring-browsers-for-e2e-testing": "Configuring browsers for E2E Testing",
+        "running-the-tests": "Running the tests",
+        "testing-against-production-server": "Testing against production server",
+        "deploying-to-a-staging-server": "Deploying to a staging server",
+        "running-client-scripts": "Running client scripts",
+        "config-points": "Config points"
+      },
+      "src": "development.md",
+      "title": "",
+      "layout": "default"
+    },
+    {
+      "headings": {
+        "using-alternative-email-providers": "Using alternative email providers",
+        "sendgrid": "SendGrid",
+        "mailgun": "Mailgun",
+        "mailjet": "Mailjet"
+      },
+      "src": "emails.md",
+      "title": "",
+      "layout": "default"
+    },
+    {
+      "headings": {
+        "glossary": "Glossary",
+        "product-related": "Product-related",
+        "development-related": "Development-related"
+      },
+      "src": "glossary.md",
+      "title": "",
+      "layout": "default"
+    },
+    {
+      "headings": {
+        "set-up-an-ide": "Set up an IDE",
+        "eclipse-ide": "Eclipse IDE",
+        "prerequisites": "Prerequisites",
+        "project-setup": "Project Setup",
+        "intellij-idea": "IntelliJ IDEA",
+        "prerequisites-2": "Prerequisites",
+        "project-setup-2": "Project Setup"
+      },
+      "src": "ide-setup.md",
+      "title": "",
+      "layout": "default"
+    },
+    {
+      "headings": {
+        "issue-tracker": "Issue tracker",
+        "issue-lifecycle": "Issue lifecycle",
+        "issue-labels": "Issue labels"
+      },
+      "src": "issues.md",
+      "title": "",
+      "layout": "default"
+    },
+    {
+      "headings": {
+        "overview": "Overview",
+        "vision": "Vision",
+        "challenges": "Challenges",
+        "principles": "Principles"
+      },
+      "src": "overview.md",
+      "title": "",
+      "layout": "default"
+    },
+    {
+      "headings": {
+        "performance-testing": "Performance Testing",
+        "creating-performance-tests": "Creating Performance Tests",
+        "running-performance-tests": "Running Performance Tests",
+        "using-gradle": "Using Gradle",
+        "using-the-command-line": "Using the Command Line",
+        "using-jmeter-gui": "Using JMeter GUI"
+      },
+      "src": "performance-testing.md",
+      "title": "",
+      "layout": "default"
+    },
+    {
+      "headings": {
+        "development-workflow": "Development Workflow",
+        "overview": "Overview",
+        "fixing-issues": "Fixing issues",
+        "step-1-pick-an-issue-to-fix": "Step 1: Pick an issue to fix",
+        "step-2-start-clean-from-a-new-branch": "Step 2: Start clean from a new branch",
+        "step-3-fix-the-issue": "Step 3: Fix the issue",
+        "step-4-submit-a-pr": "Step 4: Submit a PR",
+        "step-5-following-up": "Step 5: Following up",
+        "step-6-prepare-for-merging": "Step 6: Prepare for merging",
+        "reviewing-a-pr": "Reviewing a PR",
+        "merging-a-pr": "Merging a PR"
+      },
+      "src": "process.md",
+      "title": "",
+      "layout": "default"
+    },
+    {
+      "headings": {
+        "setting-up-a-development-environment": "Setting up a development environment",
+        "step-1-obtain-your-own-copy-of-the-repository": "Step 1: Obtain your own copy of the repository",
+        "step-2-install-necessary-tools-and-languages": "Step 2: Install necessary tools and languages",
+        "step-3-set-up-project-specific-settings-and-dependencies": "Step 3: Set up project-specific settings and dependencies",
+        "step-4-set-up-an-ide-recommended": "Step 4: Set up an IDE (Recommended)",
+        "step-5-start-developing": "Step 5: Start developing"
+      },
+      "src": "setting-up.md",
+      "title": "",
+      "layout": "default"
+    },
+    {
+      "headings": {
+        "snapshot-testing": "Snapshot Testing",
+        "what-is-snapshot-testing": "What is Snapshot Testing?",
+        "how-does-snapshot-testing-work": "How does Snapshot Testing work?",
+        "how-do-we-use-snapshot-testing": "How do we use Snapshot Testing?",
+        "when-do-we-use-snapshot-testing": "When do we use Snapshot Testing?",
+        "when-do-we-not-use-snapshot-testing": "When do we NOT use Snapshot Testing?",
+        "best-practices": "Best Practices",
+        "final-notes": "Final Notes"
+      },
+      "src": "snapshot-testing.md",
+      "title": "",
+      "layout": "default"
+    },
+    {
+      "headings": {
+        "static-analysis": "Static Analysis",
+        "version-numbers": "Version numbers",
+        "tool-stack": "Tool stack",
+        "suppressing-rules": "Suppressing rules",
+        "intellij-automatic-setup": "IntelliJ automatic setup",
+        "running-static-analysis": "Running static analysis",
+        "cli": "CLI",
+        "ci": "CI"
+      },
+      "src": "static-analysis.md",
+      "title": "",
+      "layout": "default"
+    },
+    {
+      "headings": {
+        "developer-troubleshooting-guide": "Developer Troubleshooting Guide",
+        "troubleshooting-project-setup": "Troubleshooting project setup",
+        "common-setup-errors-and-solutions": "Common setup errors and solutions",
+        "troubleshooting-test-failures": "Troubleshooting test failures",
+        "optimizing-ide-layout-for-testing": "Optimizing IDE layout for testing",
+        "how-automated-browser-tests-work": "How automated browser tests work",
+        "common-test-errors-and-solutions": "Common test errors and solutions",
+        "submitting-help-request": "Submitting help request"
+      },
+      "src": "troubleshooting-guide.md",
+      "title": "",
+      "layout": "default"
+    }
+  ]
+}

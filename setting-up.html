@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="MarkBind 2.3.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link rel="stylesheet" href="markbind/css/bootstrap.min.css">
+  <link rel="stylesheet" href="markbind/css/bootstrap-vue.min.css">
+  <link rel="stylesheet" href="markbind/fontawesome/css/all.min.css">
+  <link rel="stylesheet" href="markbind/glyphicons/css/bootstrap-glyphicons.min.css">
+  <link rel="stylesheet" href="markbind/css/github.min.css">
+  <link rel="stylesheet" href="markbind/css/markbind.css">
+  <link rel="stylesheet" href="markbind/layouts/default/styles.css">
+  <link rel="stylesheet" href="markbind/css/site-nav.css">
+
+
+
+</head>
+
+<body>
+  <div id="app">
+    <header>
+      <navbar placement="top" type="inverse">
+        <a slot="brand" href="/teammates/index.html" title="Home" class="navbar-brand"><i class="far fa-file-image"></i></a>
+        <li><a href="/teammates/index.html" class="nav-link">HOME</a></li>
+        <li><a href="/teammates/about.html" class="nav-link">ABOUT</a></li>
+        <li slot="right">
+          <form class="navbar-form">
+            <searchbar :data="searchData" placeholder="Search" :on-hit="searchCallback" menu-align-right></searchbar>
+          </form>
+        </li>
+      </navbar>
+    </header>
+    <div id="flex-body">
+      <nav id="site-nav" class="navbar navbar-light bg-transparent">
+        <div class="position-sticky position-top site-nav-spacer viewport-height-90 scrollable slim-scroll">
+          <ul class="px-0 site-nav-list">
+            <li class="mt-2"><a href="/teammates/index.html" class="site-nav__a">Index</a></li>
+            <li class="mt-2"><a href="/teammates/CONTRIBUTING.html" class="site-nav__a">CONTRIBUTING</a></li>
+            <li class="mt-2"><a href="/teammates/README.html" class="site-nav__a">README</a></li>
+            <li class="mt-2"><a href="/teammates/best-practices/coding.html" class="site-nav__a">Coding</a></li>
+            <li class="mt-2"><a href="/teammates/best-practices/data-migration.html" class="site-nav__a">Data Migration</a></li>
+            <li class="mt-2"><a href="/teammates/best-practices/testing.html" class="site-nav__a">Testing</a></li>
+            <li class="mt-2"><a href="/teammates/best-practices/ui-design.html" class="site-nav__a">Ui Design</a></li>
+            <li class="mt-2"><a href="/teammates/captcha.html" class="site-nav__a">Captcha</a></li>
+            <li class="mt-2"><a href="/teammates/design.html" class="site-nav__a">Design</a></li>
+            <li class="mt-2"><a href="/teammates/development.html" class="site-nav__a">Development</a></li>
+            <li class="mt-2"><a href="/teammates/emails.html" class="site-nav__a">Emails</a></li>
+            <li class="mt-2"><a href="/teammates/glossary.html" class="site-nav__a">Glossary</a></li>
+            <li class="mt-2"><a href="/teammates/ide-setup.html" class="site-nav__a">Ide Setup</a></li>
+            <li class="mt-2"><a href="/teammates/issues.html" class="site-nav__a">Issues</a></li>
+            <li class="mt-2"><a href="/teammates/overview.html" class="site-nav__a">Overview</a></li>
+            <li class="mt-2"><a href="/teammates/performance-testing.html" class="site-nav__a">Performance Testing</a></li>
+            <li class="mt-2"><a href="/teammates/process.html" class="site-nav__a">Process</a></li>
+            <li class="mt-2"><a href="/teammates/setting-up.html" class="site-nav__a current">Setting Up</a></li>
+            <li class="mt-2"><a href="/teammates/snapshot-testing.html" class="site-nav__a">Snapshot Testing</a></li>
+            <li class="mt-2"><a href="/teammates/static-analysis.html" class="site-nav__a">Static Analysis</a></li>
+            <li class="mt-2"><a href="/teammates/troubleshooting-guide.html" class="site-nav__a">Troubleshooting Guide</a></li>
+          </ul>
+        </div>
+      </nav>
+      <div id="content-wrapper">
+        <h1 id="setting-up-a-development-environment">Setting up a development environment<a class="fa fa-anchor" href="#setting-up-a-development-environment"></a></h1>
+        <p>This is a step-by-step guide for setting up a development environment on your local machine.
+          Using this environment, you can contribute to the project by working on features, enhancements, bug fixes, etc.</p>
+        <p>All the instructions in this document work for Linux, OS X, and Windows, with the following pointers:</p>
+        <ul>
+          <li>Replace <code>./gradlew</code> to <code>gradlew.bat</code> if you are using Windows.</li>
+          <li>All the commands are assumed to be run from the root project folder, unless specified otherwise.</li>
+          <li>When a version is specified for any tool, install that version instead of the latest version available.</li>
+        </ul>
+        <blockquote>
+          <p>If you encounter any problems during the setup process, please refer to our <a href="/teammates/troubleshooting-guide.md">troubleshooting guide</a> before posting a help request in our <a href="https://github.com/TEAMMATES/teammates/issues">issue tracker</a>.</p>
+        </blockquote>
+        <h2 id="step-1-obtain-your-own-copy-of-the-repository">Step 1: Obtain your own copy of the repository<a class="fa fa-anchor" href="#step-1-obtain-your-own-copy-of-the-repository"></a></h2>
+        <ol>
+          <li>
+            <p>Install Git.</p>
+            <ol>
+              <li>(Optional but recommended) Install Sourcetree or other similar Git client.</li>
+            </ol>
+          </li>
+          <li>
+            <p>Fork our repo at <a href="https://github.com/TEAMMATES/teammates">https://github.com/TEAMMATES/teammates</a>. Clone the fork to your hard disk.</p>
+          </li>
+          <li>
+            <p>Add a remote name (e.g <code>upstream</code>) for your copy of the main repo. Fetch the remote-tracking branches from the main repo to keep it in sync with your copy.</p>
+            <pre><code class="hljs sh">git remote add upstream https://github.com/TEAMMATES/teammates.git
+git fetch upstream
+</code></pre>
+            <p><strong>Verification:</strong> Use the command <code>git branch -r</code> and the following lines should be part of the output:</p>
+            <pre><code class="hljs"> upstream/master
+ upstream/release
+</code></pre>
+          </li>
+          <li>
+            <p>Set your <code>master</code> branch to track the main repo's <code>master</code> branch.</p>
+            <pre><code class="hljs sh">git checkout master
+git branch -u upstream/master
+</code></pre>
+          </li>
+        </ol>
+        <p>More information can be found at <a href="https://help.github.com/articles/fork-a-repo/">this documentation</a>.</p>
+        <h2 id="step-2-install-necessary-tools-and-languages">Step 2: Install necessary tools and languages<a class="fa fa-anchor" href="#step-2-install-necessary-tools-and-languages"></a></h2>
+        <p>These tools are necessary regardless of whether you are developing front-end or back-end:</p>
+        <ol>
+          <li>
+            <p>Install JDK 1.8.</p>
+          </li>
+          <li>
+            <p>Install Python 2.7.</p>
+          </li>
+          <li>
+            <p>Install Google Cloud SDK (minimum version 222.0.0). Follow the directions given <a href="https://cloud.google.com/sdk/downloads">here</a>.
+              Note that you <em>do not</em> need to <a href="https://cloud.google.com/sdk/docs/initializing">initialize the SDK</a>.</p>
+            <pre><code class="hljs sh"><span class="hljs-comment"># Run the following command at the Google Cloud SDK directory</span>
+
+<span class="hljs-comment"># Linux/OS X</span>
+./install.sh --path-update <span class="hljs-literal">true</span>
+
+<span class="hljs-comment"># Windows</span>
+install.bat --path-update <span class="hljs-literal">true</span>
+</code></pre>
+            <p>If you are installing in Red Hat, CentOS, Fedora, Debian or Ubuntu, refer to the quick start of Google Cloud SDK for <a href="https://cloud.google.com/sdk/docs/quickstart-debian-ubuntu">Debian/Ubuntu</a> or <a href="https://cloud.google.com/sdk/docs/quickstart-redhat-centos">Red Hat/CentOS/Fedora</a> respectively.</p>
+            <p><strong>Verification</strong>: Run a <code>gcloud</code> command (e.g. <code>gcloud version</code>) in order to verify that you can access the SDK from the command line.</p>
+          </li>
+          <li>
+            <p>Run the following command to install App Engine Java SDK bundled with the Cloud SDK:</p>
+            <pre><code class="hljs sh"><span class="hljs-comment"># Linux/OS X/Windows</span>
+gcloud -q components install app-engine-java
+
+<span class="hljs-comment"># Red Hat/CentOS/Fedora</span>
+sudo yum install google-cloud-sdk-app-engine-java
+
+<span class="hljs-comment"># Debian/Ubuntu</span>
+sudo apt-get install google-cloud-sdk-app-engine-java
+</code></pre>
+            <p><strong>Verification:</strong> Run <code>gcloud version</code> and there should be an entry on <code>app-engine-java</code>.</p>
+          </li>
+        </ol>
+        <p>If you want to develop front-end, you need to install the following:</p>
+        <ol>
+          <li>Install Node.js (minimum version 8.9.4).</li>
+          <li>(Optional but highly recommended) Install Angular CLI version 6 globally.
+            <pre><code class="hljs sh">npm install -g @angular/cli@6
+</code></pre>
+            <strong>Verification:</strong> Run <code>ng</code> and you should see a list of available Angular CLI commands.</li>
+        </ol>
+        <h2 id="step-3-set-up-project-specific-settings-and-dependencies">Step 3: Set up project-specific settings and dependencies<a class="fa fa-anchor" href="#step-3-set-up-project-specific-settings-and-dependencies"></a></h2>
+        <ol>
+          <li>
+            <p>Run this command to create the main config files (these are not under revision control because their contents vary from developer to developer):</p>
+            <pre><code class="hljs sh">./gradlew createConfigs
+</code></pre>
+            <p><strong>Verification:</strong> The file named <code>gradle.properties</code> should be added to the project root directory.</p>
+          </li>
+          <li>
+            <p>Modify the following config file:</p>
+            <ul>
+              <li><code>gradle.properties</code><br>
+                If you want to use a JDK other than the one specified in your PATH variable, add the value to the variable <code>org.gradle.java.home</code>.</li>
+            </ul>
+          </li>
+          <li>
+            <p>Run this command to download the necessary tools for front-end development (if you are going to be involved):</p>
+            <pre><code class="hljs sh">npm install
+</code></pre>
+            <p><strong>Verification:</strong> A folder named <code>node_modules</code> should be added to the project root directory.</p>
+          </li>
+        </ol>
+        <h2 id="step-4-set-up-an-ide-recommended">Step 4: Set up an IDE (Recommended)<a class="fa fa-anchor" href="#step-4-set-up-an-ide-recommended"></a></h2>
+        <p>You are encouraged, but not required, to use an IDE to assist development tasks.</p>
+        <p>We currently support two IDEs: Eclipse IDE and IntelliJ IDEA.
+          Support requests related to other IDEs will not be entertained.</p>
+        <p>Refer to <a href="/teammates/ide-setup.md">this document</a> if you wish to set up an IDE for developing TEAMMATES.</p>
+        <h2 id="step-5-start-developing">Step 5: Start developing<a class="fa fa-anchor" href="#step-5-start-developing"></a></h2>
+        <p>If you have followed every step correctly, your development environment should be set up successfully.</p>
+        <p>Proceed to the development routine as outlined in <a href="/teammates/development.md">this document</a>.</p>
+      </div>
+    </div>
+    <footer>
+      <div class="text-center">
+        This is a dynamic height footer that supports markdown <span>😄</span>!
+      </div>
+
+      <div class="text-center">
+        <small>[Generated by <a href="https://markbind.org/">MarkBind 2.3.0</a> on Tue, 23 Apr 2019 07:31:51 GMT]</small></div>
+    </footer>
+  </div>
+</body>
+<script src="markbind/js/vue.min.js"></script>
+<script src="markbind/js/vue-strap.min.js"></script>
+<script src="markbind/js/bootstrap-utility.min.js"></script>
+<script src="markbind/js/polyfill.min.js"></script>
+<script src="markbind/js/bootstrap-vue.min.js"></script>
+<script>
+  const baseUrl = '/teammates'
+  const enableSearch = true
+</script>
+<script src="markbind/js/setup.js"></script>
+<script src="markbind/layouts/default/scripts.js"></script>
+
+</html>

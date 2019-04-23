@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="MarkBind 2.3.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link rel="stylesheet" href="markbind/css/bootstrap.min.css">
+  <link rel="stylesheet" href="markbind/css/bootstrap-vue.min.css">
+  <link rel="stylesheet" href="markbind/fontawesome/css/all.min.css">
+  <link rel="stylesheet" href="markbind/glyphicons/css/bootstrap-glyphicons.min.css">
+  <link rel="stylesheet" href="markbind/css/github.min.css">
+  <link rel="stylesheet" href="markbind/css/markbind.css">
+  <link rel="stylesheet" href="markbind/layouts/default/styles.css">
+  <link rel="stylesheet" href="markbind/css/site-nav.css">
+
+
+
+</head>
+
+<body>
+  <div id="app">
+    <header>
+      <navbar placement="top" type="inverse">
+        <a slot="brand" href="/teammates/index.html" title="Home" class="navbar-brand"><i class="far fa-file-image"></i></a>
+        <li><a href="/teammates/index.html" class="nav-link">HOME</a></li>
+        <li><a href="/teammates/about.html" class="nav-link">ABOUT</a></li>
+        <li slot="right">
+          <form class="navbar-form">
+            <searchbar :data="searchData" placeholder="Search" :on-hit="searchCallback" menu-align-right></searchbar>
+          </form>
+        </li>
+      </navbar>
+    </header>
+    <div id="flex-body">
+      <nav id="site-nav" class="navbar navbar-light bg-transparent">
+        <div class="position-sticky position-top site-nav-spacer viewport-height-90 scrollable slim-scroll">
+          <ul class="px-0 site-nav-list">
+            <li class="mt-2"><a href="/teammates/index.html" class="site-nav__a">Index</a></li>
+            <li class="mt-2"><a href="/teammates/CONTRIBUTING.html" class="site-nav__a">CONTRIBUTING</a></li>
+            <li class="mt-2"><a href="/teammates/README.html" class="site-nav__a">README</a></li>
+            <li class="mt-2"><a href="/teammates/best-practices/coding.html" class="site-nav__a">Coding</a></li>
+            <li class="mt-2"><a href="/teammates/best-practices/data-migration.html" class="site-nav__a">Data Migration</a></li>
+            <li class="mt-2"><a href="/teammates/best-practices/testing.html" class="site-nav__a">Testing</a></li>
+            <li class="mt-2"><a href="/teammates/best-practices/ui-design.html" class="site-nav__a">Ui Design</a></li>
+            <li class="mt-2"><a href="/teammates/captcha.html" class="site-nav__a">Captcha</a></li>
+            <li class="mt-2"><a href="/teammates/design.html" class="site-nav__a">Design</a></li>
+            <li class="mt-2"><a href="/teammates/development.html" class="site-nav__a">Development</a></li>
+            <li class="mt-2"><a href="/teammates/emails.html" class="site-nav__a">Emails</a></li>
+            <li class="mt-2"><a href="/teammates/glossary.html" class="site-nav__a">Glossary</a></li>
+            <li class="mt-2"><a href="/teammates/ide-setup.html" class="site-nav__a">Ide Setup</a></li>
+            <li class="mt-2"><a href="/teammates/issues.html" class="site-nav__a">Issues</a></li>
+            <li class="mt-2"><a href="/teammates/overview.html" class="site-nav__a">Overview</a></li>
+            <li class="mt-2"><a href="/teammates/performance-testing.html" class="site-nav__a">Performance Testing</a></li>
+            <li class="mt-2"><a href="/teammates/process.html" class="site-nav__a">Process</a></li>
+            <li class="mt-2"><a href="/teammates/setting-up.html" class="site-nav__a">Setting Up</a></li>
+            <li class="mt-2"><a href="/teammates/snapshot-testing.html" class="site-nav__a">Snapshot Testing</a></li>
+            <li class="mt-2"><a href="/teammates/static-analysis.html" class="site-nav__a">Static Analysis</a></li>
+            <li class="mt-2"><a href="/teammates/troubleshooting-guide.html" class="site-nav__a current">Troubleshooting Guide</a></li>
+          </ul>
+        </div>
+      </nav>
+      <div id="content-wrapper">
+        <h1 id="developer-troubleshooting-guide">Developer Troubleshooting Guide<a class="fa fa-anchor" href="#developer-troubleshooting-guide"></a></h1>
+        <p>This document can help you to fix the common problems encountered while contributing to TEAMMATES.
+          Note that some of the screenshots might be outdated, but the instructions will remain the same and all necessary modifications will be explained.</p>
+        <ul>
+          <li><a href="#troubleshooting-project-setup">Troubleshooting project setup</a>
+            <ul>
+              <li><a href="#common-setup-errors-and-solutions">Common setup errors and solutions</a></li>
+            </ul>
+          </li>
+          <li><a href="#troubleshooting-test-failures">Troubleshooting test failures</a>
+            <ul>
+              <li><a href="#optimizing-ide-layout-for-testing">Optimizing IDE layout for testing</a></li>
+              <li><a href="#how-automated-browser-tests-work">How automated browser tests work</a></li>
+              <li><a href="#common-test-errors-and-solutions">Common test errors and solutions</a></li>
+            </ul>
+          </li>
+          <li><a href="#submitting-help-request">Submitting help request</a></li>
+        </ul>
+        <h2 id="troubleshooting-project-setup">Troubleshooting project setup<a class="fa fa-anchor" href="#troubleshooting-project-setup"></a></h2>
+        <h3 id="common-setup-errors-and-solutions">Common setup errors and solutions<a class="fa fa-anchor" href="#common-setup-errors-and-solutions"></a></h3>
+        <ul>
+          <li>
+            <p><strong>ERROR</strong>: After downloading and installing Google Cloud SDK, running any <code>gcloud</code> command results in <code>gcloud: command not found</code> or alike.</p>
+            <p><strong>REASON</strong>: You did not choose to update the <code>PATH</code> variable when installing the SDK.</p>
+            <p><strong>SOLUTION</strong>: You can re-run the install command again without any side effect. Make sure to choose to update the <code>PATH</code> variable this time. Alternatively, you can use other appropriate methods to update your <code>PATH</code> variable to include the <code>/bin</code> sub-folder of the SDK folder.<br>
+              To verify this, try running any <code>gcloud</code> command and it should now give you access to the SDK.</p>
+          </li>
+          <li>
+            <p><strong>ERROR (on Windows)</strong>: Dev server launched by Eclipse keeps running even after closing Eclipse. After restarting Eclipse, you will be able to relaunch dev server on the same port but requests will be received by the previous server instance.</p>
+            <p><strong>REASON</strong>: If Eclipse crashes while dev server is running inside Eclipse, the server might keep running even after Eclipse is closed.</p>
+            <p><strong>SOLUTION</strong>: Go to Windows Task Manager and kill processes named <code>javaw.exe</code>.</p>
+          </li>
+          <li>
+            <p><strong>ERROR</strong>: Eclipse complains &quot;file out of sync&quot;.</p>
+            <p><strong>SOLUTION</strong>: &quot;Refresh&quot; the project in Eclipse.</p>
+          </li>
+          <li>
+            <p><strong>ERROR</strong>: Eclipse complains &quot;There are no JREs installed in the workplace that are strictly compatible with this environment.&quot;.</p>
+            <p><strong>REASON</strong>: Eclipse may be using an incompatible version of the JRE Library (with respect to TEAMMATES) for the current JRE definition. System Library for JRE should be set to the workspace default, after an appropriate JRE definition has been added (covered in existing point#2 of the troubleshooting section).</p>
+            <p><strong>SOLUTION</strong>: Right-click on project → Properties → Java Build Path → &quot;Libraries&quot; tab → Select JRE System Library from the list → Edit… → Select and mark radio button for &quot;Workspace default JRE&quot;.</p>
+          </li>
+          <li>
+            <p><strong>ERROR</strong>: Eclipse complains &quot;NewClass cannot be resolved to a type&quot;, &quot;The import some.package.NewClass cannot be resolved&quot;, or &quot;The method someMethod() from the type ExistingClass refers to the missing type NewClass&quot; after syncing with <code>master</code> branch.</p>
+            <p><strong>SOLUTION</strong>: This is likely because the dependencies have changed. Right click on the project in the Project Explorer and select <code>Gradle → Refresh Gradle Project</code> for the changes to be reflected.</p>
+          </li>
+          <li>
+            <p><strong>ERROR</strong>: Some characters are displayed incorrectly in the browser. For example, <code>Charlés's</code> is displayed as <code>CharlÃ©s</code>.</p>
+            <p><strong>REASON</strong>: Page encoding is not set to UTF-8.</p>
+            <p><strong>SOLUTION</strong>: In Eclipse, go to <code>Window</code> → <code>Preferences</code> → <code>Resources</code> → change the <code>Text file encoding</code> setting from <code>Default</code> to <code>Other: UTF-8</code>. If this does not fix the error, you can try the methods in <a href="https://z0ltan.wordpress.com/2011/12/25/changing-the-encoding-in-eclipse-to-utf-8-howto/">this link</a>.</p>
+          </li>
+        </ul>
+        <h2 id="troubleshooting-test-failures">Troubleshooting test failures<a class="fa fa-anchor" href="#troubleshooting-test-failures"></a></h2>
+        <h3 id="optimizing-ide-layout-for-testing">Optimizing IDE layout for testing<a class="fa fa-anchor" href="#optimizing-ide-layout-for-testing"></a></h3>
+        <p>The default place for the TestNG tab is alongside the Console tab.</p>
+        <p><a href="/teammates/images/troubleshooting-test-1.png" target="_self"><img src="/teammates/images/troubleshooting-test-1.png" alt class="img-fluid"></a></p>
+        <p>Here is a better place for it. Just drag the tab and drop it alongside the Project Explorer tab.</p>
+        <p><a href="/teammates/images/troubleshooting-test-2.png" target="_self"><img src="/teammates/images/troubleshooting-test-2.png" alt class="img-fluid"></a></p>
+        <h3 id="how-automated-browser-tests-work">How automated browser tests work<a class="fa fa-anchor" href="#how-automated-browser-tests-work"></a></h3>
+        <p>Our automated Browser tests compare generated Web pages with expected pages (these are in the <code>src/test/resources/pages</code> folder). Such test cases fails when the expected page does not match the actual page. To see the diff between actual and expected, double click the error message in the TestNG tab.</p>
+        <p>Here is an example (use the zoom feature of the Browser to see details of the screenshot):</p>
+        <p><a href="/teammates/images/troubleshooting-test-3.png" target="_self"><img src="/teammates/images/troubleshooting-test-3.png" alt class="img-fluid"></a></p>
+        <p>Note that you can ignore the following differences reported by Eclipse diff tool. Those are not the cause of the test failure.</p>
+        <div class="table-responsive">
+          <table class="markbind-table table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th>Expected</th>
+                <th>Actual</th>
+                <th>Explanation</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>&lt;expected&gt;&lt;/expected&gt;</code></td>
+                <td><code>&lt;actual&gt;&lt;/actual&gt;</code></td>
+                <td>These are inserted by the test code for easier reference, after the comparison has been done.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Furthermore, you might see tags such as <code>${test.student1}</code> and <code>${version}</code> in some of the expected files (e.g. <code>studentHomeHTML.html</code>) if you open them in Eclipse. The test code will replace those tags with correct values before performing the comparison. For example, <code>${version}</code> will be replaced by something like <code>6.0.0</code>.</p>
+        <h3 id="common-test-errors-and-solutions">Common test errors and solutions<a class="fa fa-anchor" href="#common-test-errors-and-solutions"></a></h3>
+        <ul>
+          <li>
+            <p><strong>ERROR</strong>: Encountered <code>java.net.ConnectException: Connection refused</code> when running some tests.</p>
+            <p><strong>SOLUTION</strong>: Ensure that your dev server is started prior to running those tests.</p>
+          </li>
+          <li>
+            <p><strong>ERROR</strong>: Encountered <code>org.openqa.selenium.WebDriverException: Unable to bind to locking port 7054 within 45000 ms</code> when running tests with Browser.</p>
+            <p><strong>SOLUTION</strong>: Ensure compatible version of Firefox is installed as specified under <a href="/teammates/development.md#testing">Development process document</a>.</p>
+          </li>
+          <li>
+            <p><strong>ERROR</strong>: Tests fail randomly during dev server testing.</p>
+            <p><strong>SOLUTION</strong>: Make sure there is only one dev server running. Eclipse will happily allow you to start multiple dev servers.</p>
+            <p><a href="/teammates/images/troubleshooting-test-4.png" target="_self"><img src="/teammates/images/troubleshooting-test-4.png" alt class="img-fluid"></a></p>
+          </li>
+          <li>
+            <p><strong>ERROR</strong>: Test failure message encountered when running full test suite: &quot;Selenium cannot find Firefox binary in PATH&quot;.</p>
+            <p><strong>REASON 1</strong>: Path to Firefox executable on local machine is incorrect.</p>
+            <p><strong>SOLUTION 1 (on Windows)</strong>: Specify the correct folder in system PATH variable.</p>
+            <p>Open Windows Explorer → Right-click on Computer → Advanced System Settings → &quot;Advanced&quot; tab → Environment Variables… → Select &quot;PATH&quot; from the list → Add directory of &quot;Mozilla Firefox&quot; folder to &quot;Variable value&quot; field.</p>
+            <p><strong>REASON 2</strong>: Incorrect custom path in <code>test.firefox.path</code>.</p>
+            <p><strong>SOLUTION 2</strong>: Make sure that the path is set correctly following the example from <code>test.template.properties</code>.</p>
+          </li>
+          <li>
+            <p><strong>ERROR</strong>: A handful of failed test cases (&lt; 10).</p>
+            <p><strong>SOLUTION</strong>: Re-run the failed tests with TestNG, all test cases should pass eventually (it may take a few runs). If there are tests that persistently fail and not addressed in other parts of this guide, you may <a href="https://github.com/TEAMMATES/teammates/issues/new">request for help in the issue tracker</a>.</p>
+          </li>
+          <li>
+            <p><strong>ERROR</strong>: Tests fail due to accented characters.</p>
+            <p><strong>SOLUTION</strong>: Ensure that the text file encoding for your Eclipse workspace has been set to <code>UTF-8</code> as specified under <a href="/teammates/setting-up.md">Setting up guide</a>.</p>
+          </li>
+          <li>
+            <p><strong>ERROR</strong>: Error message in the console about &quot;incorrect date format&quot;.</p>
+            <p><strong>SOLUTION</strong>: Ensure the date format of your computer matches the below. For Windows, <a href="http://www.sevenforums.com/tutorials/3530-time-format-change.html">this link</a> may be useful.</p>
+            <p><a href="/teammates/images/troubleshooting-test-5.png" target="_self"><img src="/teammates/images/troubleshooting-test-5.png" alt class="img-fluid"></a></p>
+          </li>
+          <li>
+            <p><strong>ERROR</strong>: <code>InstructorCourseDetailsPageUiTest</code> fails in production server due to Gmail's access restriction (e.g <code>javax.mail.AuthenticationFailedException</code>)</p>
+            <p><strong>SOLUTION</strong>: <a href="https://support.google.com/accounts/answer/6010255?hl=en">&quot;Allow access for less secure apps&quot;</a> for the accounts used in that particular test. As doing so will leave the accounts more vulnerable to security issues, it is strongly recommended that the access is revoked after the test passes.</p>
+          </li>
+          <li>
+            <p><strong>ERROR (on Linux)</strong>: <code>java.io.IOException: Directory &quot;/tmpfiles&quot; could not be created</code>.</p>
+            <p><strong>SOLUTION</strong>: Add <code>-Djava.io.tmpdir=/path/to/teammates/tmp</code> for the tests' run configurations. The &quot;tmp&quot; folder in the specified directory needs to be created before running the tests.</p>
+          </li>
+        </ul>
+        <h2 id="submitting-help-request">Submitting help request<a class="fa fa-anchor" href="#submitting-help-request"></a></h2>
+        <p>If none of the items in this guide helps with the problem you face, you can <a href="https://github.com/TEAMMATES/teammates/issues/new">post in the issue tracker</a> to request for help.
+          Remember to supply as much relevant information as possible when requestng for help, e.g.:</p>
+        <ol>
+          <li>Step in the setting up guide that you are in (if you are setting up the project), or which tests are failing (if you are resolving test failures)</li>
+          <li>Error messages shown on the console (or from the TestNG tab if resolving test failures)</li>
+          <li>What measures you have taken to address the problem</li>
+          <li>Operating system, JDK version, Eclipse version, Firefox version (where applicable)</li>
+          <li>Screenshots (if any)</li>
+        </ol>
+      </div>
+    </div>
+    <footer>
+      <div class="text-center">
+        This is a dynamic height footer that supports markdown <span>😄</span>!
+      </div>
+
+      <div class="text-center">
+        <small>[Generated by <a href="https://markbind.org/">MarkBind 2.3.0</a> on Tue, 23 Apr 2019 07:31:51 GMT]</small></div>
+    </footer>
+  </div>
+</body>
+<script src="markbind/js/vue.min.js"></script>
+<script src="markbind/js/vue-strap.min.js"></script>
+<script src="markbind/js/bootstrap-utility.min.js"></script>
+<script src="markbind/js/polyfill.min.js"></script>
+<script src="markbind/js/bootstrap-vue.min.js"></script>
+<script>
+  const baseUrl = '/teammates'
+  const enableSearch = true
+</script>
+<script src="markbind/js/setup.js"></script>
+<script src="markbind/layouts/default/scripts.js"></script>
+
+</html>

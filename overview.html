@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="MarkBind 2.3.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link rel="stylesheet" href="markbind/css/bootstrap.min.css">
+  <link rel="stylesheet" href="markbind/css/bootstrap-vue.min.css">
+  <link rel="stylesheet" href="markbind/fontawesome/css/all.min.css">
+  <link rel="stylesheet" href="markbind/glyphicons/css/bootstrap-glyphicons.min.css">
+  <link rel="stylesheet" href="markbind/css/github.min.css">
+  <link rel="stylesheet" href="markbind/css/markbind.css">
+  <link rel="stylesheet" href="markbind/layouts/default/styles.css">
+  <link rel="stylesheet" href="markbind/css/site-nav.css">
+
+
+
+</head>
+
+<body>
+  <div id="app">
+    <header>
+      <navbar placement="top" type="inverse">
+        <a slot="brand" href="/teammates/index.html" title="Home" class="navbar-brand"><i class="far fa-file-image"></i></a>
+        <li><a href="/teammates/index.html" class="nav-link">HOME</a></li>
+        <li><a href="/teammates/about.html" class="nav-link">ABOUT</a></li>
+        <li slot="right">
+          <form class="navbar-form">
+            <searchbar :data="searchData" placeholder="Search" :on-hit="searchCallback" menu-align-right></searchbar>
+          </form>
+        </li>
+      </navbar>
+    </header>
+    <div id="flex-body">
+      <nav id="site-nav" class="navbar navbar-light bg-transparent">
+        <div class="position-sticky position-top site-nav-spacer viewport-height-90 scrollable slim-scroll">
+          <ul class="px-0 site-nav-list">
+            <li class="mt-2"><a href="/teammates/index.html" class="site-nav__a">Index</a></li>
+            <li class="mt-2"><a href="/teammates/CONTRIBUTING.html" class="site-nav__a">CONTRIBUTING</a></li>
+            <li class="mt-2"><a href="/teammates/README.html" class="site-nav__a">README</a></li>
+            <li class="mt-2"><a href="/teammates/best-practices/coding.html" class="site-nav__a">Coding</a></li>
+            <li class="mt-2"><a href="/teammates/best-practices/data-migration.html" class="site-nav__a">Data Migration</a></li>
+            <li class="mt-2"><a href="/teammates/best-practices/testing.html" class="site-nav__a">Testing</a></li>
+            <li class="mt-2"><a href="/teammates/best-practices/ui-design.html" class="site-nav__a">Ui Design</a></li>
+            <li class="mt-2"><a href="/teammates/captcha.html" class="site-nav__a">Captcha</a></li>
+            <li class="mt-2"><a href="/teammates/design.html" class="site-nav__a">Design</a></li>
+            <li class="mt-2"><a href="/teammates/development.html" class="site-nav__a">Development</a></li>
+            <li class="mt-2"><a href="/teammates/emails.html" class="site-nav__a">Emails</a></li>
+            <li class="mt-2"><a href="/teammates/glossary.html" class="site-nav__a">Glossary</a></li>
+            <li class="mt-2"><a href="/teammates/ide-setup.html" class="site-nav__a">Ide Setup</a></li>
+            <li class="mt-2"><a href="/teammates/issues.html" class="site-nav__a">Issues</a></li>
+            <li class="mt-2"><a href="/teammates/overview.html" class="site-nav__a current">Overview</a></li>
+            <li class="mt-2"><a href="/teammates/performance-testing.html" class="site-nav__a">Performance Testing</a></li>
+            <li class="mt-2"><a href="/teammates/process.html" class="site-nav__a">Process</a></li>
+            <li class="mt-2"><a href="/teammates/setting-up.html" class="site-nav__a">Setting Up</a></li>
+            <li class="mt-2"><a href="/teammates/snapshot-testing.html" class="site-nav__a">Snapshot Testing</a></li>
+            <li class="mt-2"><a href="/teammates/static-analysis.html" class="site-nav__a">Static Analysis</a></li>
+            <li class="mt-2"><a href="/teammates/troubleshooting-guide.html" class="site-nav__a">Troubleshooting Guide</a></li>
+          </ul>
+        </div>
+      </nav>
+      <div id="content-wrapper">
+        <h1 id="overview">Overview<a class="fa fa-anchor" href="#overview"></a></h1>
+        <h2 id="vision">Vision<a class="fa fa-anchor" href="#vision"></a></h2>
+        <ol>
+          <li>
+            <p>To become <strong>the biggest student project in the world</strong>.<br>
+              Biggest = many contributors, many users, relatively large code base (150k-200k LoC), evolving over a long period.<br>
+              &quot;Biggest&quot; above also implies an exceptionally high quality standard because high quality is a necessity for the long-term survival of a big student project.</p>
+          </li>
+          <li>
+            <p>To become <strong>a model and a training ground for Software Engineering students</strong> who want to learn SE skills in the context of a non-trivial real software product.</p>
+          </li>
+        </ol>
+        <h2 id="challenges">Challenges<a class="fa fa-anchor" href="#challenges"></a></h2>
+        <p>The project differs from typical student projects in the following areas, which makes it more challenging and the experience more enriching.</p>
+        <ul>
+          <li><strong>Developers</strong>: All developers are novices and their involvement with the project is short term and part time.</li>
+          <li><strong>Code</strong>: Working with legacy code written by past developers is harder than writing from scratch.</li>
+          <li><strong>Data</strong>: The data in the live system are confidential and developers are not allowed to see them. This makes troubleshooting harder.</li>
+          <li><strong>Releases</strong>: Frequent releases to an active user database requires us to maintain &quot;production quality&quot; constantly.</li>
+          <li><strong>Platform</strong>: TEAMMATES is running on Google App Engine cloud platform, which adds the following challenges.
+            <ul>
+              <li>It is an emerging platform evolving rapidly. We have to keep up.</li>
+              <li>It imposes various restrictions on the application, e.g. each request to the app has to be served within 60 seconds.</li>
+              <li>It charges us based on usage. We have to optimize usage.</li>
+            </ul>
+          </li>
+          <li><strong>Software Engineering</strong>: As TEAMMATES serves as a model system for training students, it should also focus on applying good SE techniques.</li>
+        </ul>
+        <h2 id="principles">Principles<a class="fa fa-anchor" href="#principles"></a></h2>
+        <p>We apply these principles to meet the challenges stated above.</p>
+        <ul>
+          <li><strong>We keep moving forward, always</strong>: We release frequently, in weekly <a href="http://en.wikipedia.org/wiki/Timeboxing">time-boxed iterations</a>. Every week, our product becomes better than the previous week. This means &quot;go back and rewrite from scratch&quot; is only a last resort.</li>
+          <li><strong>We are agile</strong>: We are able to change the system quickly and easily to match emerging requirements. We aim for <strong>minimal yet sufficient documentation</strong>.</li>
+          <li><strong>We defend our code with tests, fiercely</strong>: Since we practice <a href="http://www.extremeprogramming.org/rules/collective.html">collective code ownership</a>, we have to make sure the code is not accidentally broken by others. We use fully automated regression testing. The testing automation level of this project is probably higher than 99% of the projects out there.</li>
+          <li><strong>We are &quot;Gods&quot; of the few tools we use</strong>: We stick to a minimal toolset. Adding third-party tools and libraries to the project is done only if there is a STRONG justification. Only mature, stable, and well-supported tools are considered. Once selected, we should know the tool very well to get the best out of it.</li>
+          <li><strong>We value quality more than functionality</strong>: Our job is not to &quot;anyhow get it to work&quot;. The system should be good enough to be considered a &quot;model&quot; software. Our code should be of &quot;exceptionally&quot; high quality: all code is reviewed before accepting.</li>
+          <li><strong>We know what we are doing</strong>: For us, it is not enough to know something is broken, we should also know why it is broken. It is not enough to get something working, we should know how we got it to work.</li>
+          <li><strong>We seek the best, not stop at the first</strong>: We do not settle for the first workable method to solve a problem. We study other ways of solving it and decide what is the best way for us.</li>
+          <li><strong>We take pains to save the team from pain</strong>: Whenever we had to spend effort in figuring out something, we refine code/documents so that others don't have to go through the same pain. Whenever we figured out a less painful way of doing something, we make sure everyone in the team learn it too.</li>
+        </ul>
+      </div>
+    </div>
+    <footer>
+      <div class="text-center">
+        This is a dynamic height footer that supports markdown <span>😄</span>!
+      </div>
+
+      <div class="text-center">
+        <small>[Generated by <a href="https://markbind.org/">MarkBind 2.3.0</a> on Tue, 23 Apr 2019 07:31:51 GMT]</small></div>
+    </footer>
+  </div>
+</body>
+<script src="markbind/js/vue.min.js"></script>
+<script src="markbind/js/vue-strap.min.js"></script>
+<script src="markbind/js/bootstrap-utility.min.js"></script>
+<script src="markbind/js/polyfill.min.js"></script>
+<script src="markbind/js/bootstrap-vue.min.js"></script>
+<script>
+  const baseUrl = '/teammates'
+  const enableSearch = true
+</script>
+<script src="markbind/js/setup.js"></script>
+<script src="markbind/layouts/default/scripts.js"></script>
+
+</html>
